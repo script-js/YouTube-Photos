@@ -110,6 +110,40 @@ textarea {
     <script src="//apis.google.com/js/client:plusone.js"></script>
     <script src="https://raw.githubusercontent.com/youtube/api-samples/master/javascript/cors_upload.js" type="text/plain"></script>
     <script src="https://raw.githubusercontent.com/youtube/api-samples/master/javascript/upload_video.js" type="text/plain"></script>
+      <script>
+        function handleAuthClick() {
+   tokenClient.callback = async (resp) => {
+      if (resp.error !== undefined) {
+         throw (resp);
+      }
+      localStorage.setItem('gapi_token', JSON.stringify(gapi.client.getToken()));
+      await findFile().then(function (fid) {
+         if (fid == false) {
+            uploadFile("{}")
+         }
+      })
+       if (redirect) {
+      location.replace(atob(redirect.replaceAll("%2B","+")))
+    } else {
+      location.replace("dash")
+    }
+   }
+   if (gapi.client.getToken() === null) {
+      // Prompt the user to select a Google Account and ask for consent to share their data
+      // when establishing a new session.
+      tokenClient.requestAccessToken({
+         prompt: 'consent',
+         access_type: 'offline',
+         expires_in: '3600'
+      });
+   } else {
+      // Skip display of account chooser and consent dialog for an existing session.
+      tokenClient.requestAccessToken({
+         prompt: ''
+      });
+   }
+}
+      </script>
   </body>
 </html>
   </body>
