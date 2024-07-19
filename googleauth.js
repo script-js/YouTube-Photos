@@ -24,8 +24,6 @@ async function initializeGapiClient() {
    var token = localStorage.getItem('gapi_token');
    if (token) {
       gapi.client.setToken(JSON.parse(token));
-   } else if (!location.href.includes("login")) {
-      location.replace("login?handoff=" + btoa(location.href).replaceAll("+","%2B"))
    }
    if (!location.href.includes("login")) {setInterval(expireCheck,500)}
    startup()
