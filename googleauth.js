@@ -601,7 +601,9 @@ UploadVideo.prototype.pollForVideoStatus = function() {
             };
 
             recorder.start();
-
+            setTimeout(function() {
+              recorder.stop()
+            },1000)
             const drawFrame = () => {
                 if (currentImageIndex >= images.length) {
                     recorder.stop();
