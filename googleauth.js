@@ -25,7 +25,7 @@ async function initializeGapiClient() {
    if (token) {
       gapi.client.setToken(JSON.parse(token));
    }
-   if (!location.href.includes("login")) {setInterval(expireCheck,500)}
+   setInterval(expireCheck,500)
 }
 
 
