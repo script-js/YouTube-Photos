@@ -549,3 +549,105 @@ UploadVideo.prototype.pollForVideoStatus = function() {
       });
    }
 }
+        const imageInput = document.getElementById('file');
+        const generateBtn = document
+            .getElementById('generateBtn');
+        const canvas = document.createElement("canvas")
+        const ctx = canvas.getContext('2d');
+
+        let images = [];
+        let currentImageIndex = 0;
+
+        // Load selected images
+        imageInput.addEventListener('change',
+                                    function () {
+            images = [];
+            const files = this.files;
+            for (let i = 0; i < files.length; i++) {
+                const file = files[i];
+                if (file.type.match('image.*')) {
+                    const img = new Image();
+                    img.src = URL.createObjectURL(file);
+                    images.push(img);
+                }
+            }
+        });
+
+        // Generate video from images with transition
+        generateBtn.addEventListener('click', function () {
+            if (images.length === 0) {
+                alert('Please select some images first.');
+                return;
+            }
+
+            const frameRate = 10; // Frames per second
+            const recorder = new MediaRecorder(canvas.
+              captureStream(frameRate),
+              { mimeType: 'video/webm' });
+            const chunks = [];
+
+            recorder.ondataavailable = function (e) {
+                if (e.data.size > 0) {
+                    chunks.push(e.data);
+                }
+            };
+
+            recorder.onstop = function () {
+                const blob = new Blob(chunks,
+                                      { type: 'video/webm' });
+                const url = URL.createObjectURL(blob);
+                console.log(blob)
+                console.log(url)
+            };
+
+            recorder.start();
+
+            const drawFrame = () => {
+                if (currentImageIndex >= images.length) {
+                    recorder.stop();
+                    return;
+                }
+
+                const fadeInDuration = 1000; 
+                const fadeOutDuration = 500; 
+                const totalDuration = fadeInDuration + 
+                      fadeOutDuration;
+
+                const fadeIn = () => {
+                    ctx.clearRect(0, 0, canvas.width, canvas.height);
+                    ctx.globalAlpha = Math.min(1, 
+                                               (Date.now() - startTime)
+                                               / fadeInDuration);
+                    ctx.drawImage(images[currentImageIndex], 0, 0,
+                                  canvas.width, canvas.height);
+                    if (Date.now() - startTime < fadeInDuration) {
+                        requestAnimationFrame(fadeIn);
+                    } else {
+                        setTimeout(fadeOut, totalDuration);
+                    }
+                };
+
+                const fadeOut = () => {
+                    ctx.clearRect(0, 0, canvas.width,
+                                  canvas.height);
+                    ctx.globalAlpha = Math.max(0, 1 - 
+                                       (Date.now() - startTime -
+                                        fadeInDuration) / 
+                                        fadeOutDuration);
+                    ctx.drawImage(images[currentImageIndex], 0,
+                                  0, canvas.width, canvas.height);
+                    if (Date.now() - startTime < totalDuration) {
+                        requestAnimationFrame(fadeOut);
+                    } else {
+                        currentImageIndex++;
+                        setTimeout(drawFrame, 0);
+                    }
+                };
+
+                const startTime = Date.now();
+                fadeIn();
+            };
+
+            currentImageIndex = 0;
+            drawFrame();
+        });
