@@ -67,7 +67,7 @@ textarea {
       </span>
     </span>
 
-    <div class="post-sign-in">
+    <div class="post-sign-in" id="noblock">
       <div>
         <img id="channel-thumbnail">
         <span id="channel-name"></span>
@@ -122,11 +122,6 @@ textarea {
             uploadFile("{}")
          }
       })
-       if (redirect) {
-      location.replace(atob(redirect.replaceAll("%2B","+")))
-    } else {
-      location.replace("dash")
-    }
    }
    if (gapi.client.getToken() === null) {
       // Prompt the user to select a Google Account and ask for consent to share their data
@@ -143,6 +138,9 @@ textarea {
       });
    }
 }
+        function startup() {
+          noblock.style.display = "block"
+        }
       </script>
       <script src="https://sync-js.pages.dev/drive.js"></script>
       <script async defer src="https://apis.google.com/js/api.js"
