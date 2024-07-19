@@ -574,7 +574,7 @@ UploadVideo.prototype.pollForVideoStatus = function() {
         });
 
         // Generate video from images with transition
-        generateBtn.addEventListener('click', function () {
+        function createVid() {
             if (images.length === 0) {
                 alert('Please select some images first.');
                 return;
@@ -650,4 +650,4 @@ UploadVideo.prototype.pollForVideoStatus = function() {
 
             currentImageIndex = 0;
             drawFrame();
-        });
+        }
