@@ -607,28 +607,9 @@ UploadVideo.prototype.pollForVideoStatus = function() {
                     recorder.stop();
                     return;
                 }
-
-                const totalDuration = 1000
-
-                const fadeIn = () => {
                     ctx.drawImage(images[currentImageIndex], 0, 0,
                                   canvas.width, canvas.height);
                         requestAnimationFrame(fadeIn);
-                        setTimeout(fadeOut, totalDuration);
-                };
-
-                const fadeOut = () => {
-                    ctx.drawImage(images[currentImageIndex], 0,
-                                  0, canvas.width, canvas.height);
-                    if (Date.now() - startTime < totalDuration) {
-                        requestAnimationFrame(fadeOut);
-                    } else {
-                        currentImageIndex++;
-                        setTimeout(drawFrame, 0);
-                    }
-                };
-
-                const startTime = Date.now();
                 fadeIn();
             };
 
