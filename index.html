@@ -117,7 +117,7 @@ textarea {
 }
         function startup() {
           noblock.style.display = "block"
-          var uploadVideo = new UploadVideo();
+          window.uploadVideo = new UploadVideo();
           uploadVideo.ready(gapi.client.getToken().access_token);
         }
       </script>
