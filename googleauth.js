@@ -610,7 +610,6 @@ UploadVideo.prototype.pollForVideoStatus = function() {
                     ctx.drawImage(images[currentImageIndex], 0, 0,
                                   canvas.width, canvas.height);
                         requestAnimationFrame(fadeIn);
-                fadeIn();
             };
 
             currentImageIndex = 0;
