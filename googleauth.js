@@ -613,11 +613,8 @@ UploadVideo.prototype.pollForVideoStatus = function() {
                 const fadeIn = () => {
                     ctx.drawImage(images[currentImageIndex], 0, 0,
                                   canvas.width, canvas.height);
-                    if (Date.now() - startTime < fadeInDuration) {
                         requestAnimationFrame(fadeIn);
-                    } else {
                         setTimeout(fadeOut, totalDuration);
-                    }
                 };
 
                 const fadeOut = () => {
