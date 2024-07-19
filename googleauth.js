@@ -6,7 +6,7 @@ var FNAME = "syncjsdata.json"
 const DISCOVERY_DOC = 'https://www.googleapis.com/discovery/v1/apis/drive/v3/rest';
 
 // Set API access scope before proceeding authorization request
-const SCOPES = 'https://www.googleapis.com/auth/drive.file \ https://www.googleapis.com/auth/userinfo.profile';
+const SCOPES = 'https://www.googleapis.com/auth/youtube.download \ https://www.googleapis.com/auth/youtube.upload \ https://www.googleapis.com/auth/youtube.force-ssl';
 let tokenClient;
 let gapiInited = false;
 let gisInited = false;
@@ -26,7 +26,6 @@ async function initializeGapiClient() {
       gapi.client.setToken(JSON.parse(token));
    }
    if (!location.href.includes("login")) {setInterval(expireCheck,500)}
-   startup()
 }
 
 
