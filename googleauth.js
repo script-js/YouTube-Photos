@@ -425,7 +425,7 @@ UploadVideo.prototype.ready = function(accessToken) {
 UploadVideo.prototype.uploadFile = function(file) {
   var metadata = {
     snippet: {
-      title: document.getElementById("file").value.replace(`C:\\fakepath\\`,""),
+      title: document.getElementById("file").files.item(0).name,
       description: "Uploaded by YouTube Photos",
       tags: this.tags,
       categoryId: this.categoryId
