@@ -74,23 +74,6 @@ textarea {
       </div>
 
       <div>
-        <label for="title">Title:</label>
-        <input id="title" type="text" value="Default Title">
-      </div>
-      <div>
-        <label for="description">Description:</label>
-        <textarea id="description">Default description</textarea>
-      </div>
-      <div>
-        <label for="privacy-status">Privacy Status:</label>
-        <select id="privacy-status">
-          <option>public</option>
-          <option>unlisted</option>
-          <option>private</option>
-        </select>
-      </div>
-
-      <div>
         <input input type="file" id="file" class="button" accept="video/*">
         <button id="button">Upload Video</button>
       <div class="during-upload">
@@ -109,7 +92,6 @@ textarea {
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
     <script src="//apis.google.com/js/client:plusone.js"></script>
     <script src="https://raw.githubusercontent.com/youtube/api-samples/master/javascript/cors_upload.js" type="text/plain"></script>
-    <script src="https://raw.githubusercontent.com/youtube/api-samples/master/javascript/upload_video.js" type="text/plain"></script>
       <script>
         function handleAuthClick() {
    tokenClient.callback = async (resp) => {
