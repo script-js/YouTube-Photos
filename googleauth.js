@@ -608,8 +608,8 @@ UploadVideo.prototype.pollForVideoStatus = function() {
                     return;
                 }
 
-                const fadeInDuration = 1000; 
-                const fadeOutDuration = 500; 
+                const fadeInDuration = 1; 
+                const fadeOutDuration = 1; 
                 const totalDuration = fadeInDuration + 
                       fadeOutDuration;
 
