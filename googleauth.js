@@ -241,3 +241,26 @@ UploadVideo.prototype.pollForVideoStatus = function() {
     }.bind(this)
   });
 };
+
+        function handleAuthClick() {
+   tokenClient.callback = async (resp) => {
+      if (resp.error !== undefined) {
+         throw (resp);
+      }
+      localStorage.setItem('gapi_token', JSON.stringify(gapi.client.getToken()));
+   }
+   if (gapi.client.getToken() === null) {
+      // Prompt the user to select a Google Account and ask for consent to share their data
+      // when establishing a new session.
+      tokenClient.requestAccessToken({
+         prompt: 'consent',
+         access_type: 'offline',
+         expires_in: '3600'
+      });
+   } else {
+      // Skip display of account chooser and consent dialog for an existing session.
+      tokenClient.requestAccessToken({
+         prompt: ''
+      });
+   }
+}
