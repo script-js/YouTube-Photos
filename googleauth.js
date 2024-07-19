@@ -574,7 +574,7 @@ UploadVideo.prototype.pollForVideoStatus = function() {
         });
 
         // Generate video from images with transition
-        function createVid() {
+        async function createVid() {
             if (images.length === 0) {
                 alert('Please select some images first.');
                 return;
@@ -608,16 +608,9 @@ UploadVideo.prototype.pollForVideoStatus = function() {
                     return;
                 }
 
-                const fadeInDuration = 1; 
-                const fadeOutDuration = 1; 
-                const totalDuration = fadeInDuration + 
-                      fadeOutDuration;
+                const totalDuration = 1000
 
                 const fadeIn = () => {
-                    ctx.clearRect(0, 0, canvas.width, canvas.height);
-                    ctx.globalAlpha = Math.min(1, 
-                                               (Date.now() - startTime)
-                                               / fadeInDuration);
                     ctx.drawImage(images[currentImageIndex], 0, 0,
                                   canvas.width, canvas.height);
                     if (Date.now() - startTime < fadeInDuration) {
@@ -628,12 +621,6 @@ UploadVideo.prototype.pollForVideoStatus = function() {
                 };
 
                 const fadeOut = () => {
-                    ctx.clearRect(0, 0, canvas.width,
-                                  canvas.height);
-                    ctx.globalAlpha = Math.max(0, 1 - 
-                                       (Date.now() - startTime -
-                                        fadeInDuration) / 
-                                        fadeOutDuration);
                     ctx.drawImage(images[currentImageIndex], 0,
                                   0, canvas.width, canvas.height);
                     if (Date.now() - startTime < totalDuration) {
