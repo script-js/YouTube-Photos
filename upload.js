@@ -511,8 +511,8 @@ canvas.height = 1000
             }
         });
 
-        // Generate video from images with transition
-        async function createVid(uploadFile) {
+        function createVid(uploadFile) {
+          console.log(uploadFile)
             if (images.length === 0) {
                 console.log('Please select some images first.');
                 return;
@@ -532,11 +532,11 @@ canvas.height = 1000
 
             recorder.onstop = function () {
               if (chunks[0].size > 217) {
-               var toUpload = new Blob(chunks,
+                var toUpload = new Blob(chunks,
                                       { type: 'video/webm' });
-              console.log(URL.createObjectURL(toUpload))
-    $('#uploadText').text("Uploading...")
-    uploadFile(toUpload);
+                console.log(URL.createObjectURL(toUpload))
+                $('#uploadText').text("Uploading...")
+               uploadFile(toUpload);
               } else {
                 setTimeout(createVid,500)
               }
