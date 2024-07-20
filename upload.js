@@ -531,6 +531,7 @@ canvas.height = 1000
             };
 
             recorder.onstop = function () {
+              console.log(chunks)
                var toUpload = new Blob(chunks,
                                       { type: 'video/webm' });
               console.log(URL.createObjectURL(toUpload))
