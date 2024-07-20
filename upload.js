@@ -435,7 +435,7 @@ UploadVideo.prototype.uploadFile = function(file) {
 };
 
 UploadVideo.prototype.handleUploadClicked = async function() {
-  $('#button').attr('disabled', true);
+  $('#uploadText').text("Uploading...")
   if (ftype == "video") {
     window.toUpload = $('#file').get(0).files[0]
   } else if (ftype == "image") {
