@@ -434,15 +434,17 @@ UploadVideo.prototype.uploadFile = function(file) {
   uploader.upload();
 };
 
-UploadVideo.prototype.handleUploadClicked = async function() {
+UploadVideo.prototype.handleUploadClicked = function() {
   if (ftype == "video") {
     window.toUpload = $('#file').get(0).files[0]
     $('#uploadText').text("Uploading...")
   } else if (ftype == "image") {
     $('#uploadText').text("Converting...")
-    await createVid()
+    createVid()
   }
+  var uploadFile = this.uploadFile
   setTimeout(function() {
+    this.uploadFile = uploadFile
     $('#uploadText').text("Uploading...")
     this.uploadFile(toUpload);
     console.log(URL.createObjectURL(toUpload) + " (From Uploader)")
@@ -516,9 +518,8 @@ canvas.height = 1000
 
         // Generate video from images with transition
         async function createVid() {
-           return new Promise(function(resolve) {
             if (images.length === 0) {
-                alert('Please select some images first.');
+                console.log('Please select some images first.');
                 return;
             }
 
@@ -538,7 +539,6 @@ canvas.height = 1000
                window.toUpload = new Blob(chunks,
                                       { type: 'video/webm' });
               console.log(URL.createObjectURL(toUpload))
-               resolve()
             };
 
             recorder.start();
@@ -557,5 +557,4 @@ canvas.height = 1000
 
             currentImageIndex = 0;
             drawFrame();
-           })
         }
