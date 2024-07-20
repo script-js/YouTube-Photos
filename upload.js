@@ -438,17 +438,12 @@ UploadVideo.prototype.handleUploadClicked = function() {
   if (ftype == "video") {
     window.toUpload = $('#file').get(0).files[0]
     $('#uploadText').text("Uploading...")
+    this.uploadFile(toUpload);
+    console.log(URL.createObjectURL(toUpload) + " (Video)")
   } else if (ftype == "image") {
     $('#uploadText').text("Converting...")
-    createVid()
+    createVid(this.uploadFile)
   }
-  var uploadFile = this.uploadFile
-  setTimeout(function() {
-    this.uploadFile = uploadFile
-    $('#uploadText').text("Uploading...")
-    this.uploadFile(toUpload);
-    console.log(URL.createObjectURL(toUpload) + " (From Uploader)")
-  },1000)
 };
 
 UploadVideo.prototype.pollForVideoStatus = function() {
@@ -517,7 +512,7 @@ canvas.height = 1000
         });
 
         // Generate video from images with transition
-        async function createVid() {
+        async function createVid(uploadFile) {
             if (images.length === 0) {
                 console.log('Please select some images first.');
                 return;
@@ -536,9 +531,11 @@ canvas.height = 1000
             };
 
             recorder.onstop = function () {
-               window.toUpload = new Blob(chunks,
+               var toUpload = new Blob(chunks,
                                       { type: 'video/webm' });
               console.log(URL.createObjectURL(toUpload))
+    $('#uploadText').text("Uploading...")
+    uploadFile(toUpload);
             };
 
             recorder.start();
