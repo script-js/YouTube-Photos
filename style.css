@@ -90,3 +90,17 @@ nav a:hover:not(.active) {
 }
 
 nav a.active {background-color: #767575;}
+
+body,html {
+  background: black;
+  width: 98%;
+  heieght: 98%
+}
+
+.view {
+  border: none;
+  width: 100%;
+  position:absolute;
+  left: 0;
+  height: 90%;
+}
