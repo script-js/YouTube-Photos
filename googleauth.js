@@ -578,6 +578,7 @@ UploadVideo.prototype.pollForVideoStatus = function() {
 
         // Generate video from images with transition
         async function createVid() {
+           return new Promise(function(resolve) {
             if (images.length === 0) {
                 alert('Please select some images first.');
                 return;
@@ -595,8 +596,9 @@ UploadVideo.prototype.pollForVideoStatus = function() {
                 }
             };
 
-            return recorder.onstop = function () {
-                return new Blob(chunks,
+            recorder.onstop = function () {
+               reslove()
+                window.toUpload = new Blob(chunks,
                                       { type: 'video/webm' });
             };
 
@@ -616,4 +618,5 @@ UploadVideo.prototype.pollForVideoStatus = function() {
 
             currentImageIndex = 0;
             drawFrame();
+           })
         }
