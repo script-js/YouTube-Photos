@@ -478,3 +478,75 @@ UploadVideo.prototype.pollForVideoStatus = function() {
     }.bind(this)
   });
 };
+
+        const imageInput = document.getElementById('file');
+        const generateBtn = document
+            .getElementById('generateBtn');
+        const canvas = document.createElement("canvas")
+        const ctx = canvas.getContext('2d');
+
+        let images = [];
+        let currentImageIndex = 0;
+
+        // Load selected images
+        imageInput.addEventListener('change',
+                                    function () {
+            images = [];
+            const files = this.files;
+            for (let i = 0; i < files.length; i++) {
+                const file = files[i];
+                if (file.type.match('image.*')) {
+                    const img = new Image();
+                    img.src = URL.createObjectURL(file);
+                    images.push(img);
+                    window.ftype = "image"
+                } else if (file.type.match('video.*')) {
+                   window.ftype = "video"
+                }
+            }
+        });
+
+        // Generate video from images with transition
+        async function createVid() {
+           return new Promise(function(resolve) {
+            if (images.length === 0) {
+                alert('Please select some images first.');
+                return;
+            }
+
+            const frameRate = 10; // Frames per second
+            const recorder = new MediaRecorder(canvas.
+              captureStream(frameRate),
+              { mimeType: 'video/webm' });
+            const chunks = [];
+
+            recorder.ondataavailable = function (e) {
+                if (e.data.size > 0) {
+                    chunks.push(e.data);
+                }
+            };
+
+            recorder.onstop = function () {
+               window.toUpload = new Blob(chunks,
+                                      { type: 'video/webm' });
+               resolve()
+            };
+
+            recorder.start();
+            setTimeout(function() {
+              recorder.stop()
+               return;
+            },1000)
+            const drawFrame = () => {
+                if (currentImageIndex >= images.length) {
+                    recorder.stop();
+                    return;
+                }
+                    ctx.drawImage(images[currentImageIndex], 0, 0,
+                                  canvas.width, canvas.height);
+            };
+
+            currentImageIndex = 0;
+            drawFrame();
+           })
+        }
