@@ -485,8 +485,6 @@ UploadVideo.prototype.pollForVideoStatus = function() {
         const generateBtn = document
             .getElementById('generateBtn');
         const canvas = document.createElement("canvas");
-canvas.width = 1000
-canvas.height = 1000
        document.body.appendChild(canvas)
         const ctx = canvas.getContext('2d');
 
@@ -504,7 +502,11 @@ canvas.height = 1000
                     const img = new Image();
                     img.src = URL.createObjectURL(file);
                     images.push(img);
-                    window.ftype = "image"
+                    window.ftype = "image";
+                    img.onload = function () {
+                      canvas.width = this.width
+                      canvas.height = this.height
+                    };
                 } else if (file.type.match('video.*')) {
                    window.ftype = "video"
                 }
