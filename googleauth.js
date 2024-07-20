@@ -603,7 +603,7 @@ UploadVideo.prototype.pollForVideoStatus = function() {
             };
 
             recorder.start();
-            await setTimeout(function() {
+            setTimeout(function() {
               recorder.stop()
                return;
             },1000)
