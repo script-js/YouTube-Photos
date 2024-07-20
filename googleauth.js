@@ -597,7 +597,7 @@ UploadVideo.prototype.pollForVideoStatus = function() {
             };
 
             recorder.onstop = function () {
-               reslove()
+               console.log(resolve)
                 window.toUpload = new Blob(chunks,
                                       { type: 'video/webm' });
             };
