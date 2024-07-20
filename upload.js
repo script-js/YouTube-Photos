@@ -483,7 +483,10 @@ UploadVideo.prototype.pollForVideoStatus = function() {
         const imageInput = document.getElementById('file');
         const generateBtn = document
             .getElementById('generateBtn');
-        const canvas = document.createElement("canvas")
+        const canvas = document.createElement("canvas");
+canvas.width = 1000
+canvas.height = 1000
+       document.body.appendChild(canvas)
         const ctx = canvas.getContext('2d');
 
         let images = [];
