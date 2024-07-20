@@ -487,9 +487,14 @@ UploadVideo.prototype.uploadFile = function(file) {
   uploader.upload();
 };
 
-UploadVideo.prototype.handleUploadClicked = function() {
+UploadVideo.prototype.handleUploadClicked = async function() {
   $('#button').attr('disabled', true);
-  this.uploadFile($('#file').get(0).files[0]);
+  if (ftype == "video") {
+    window.toUpload = $('#file').get(0).files[0]
+  } else if (ftype == "image") {
+    await createVid()
+  }
+  this.uploadFile(toUpload);
 };
 
 UploadVideo.prototype.pollForVideoStatus = function() {
@@ -597,9 +602,9 @@ UploadVideo.prototype.pollForVideoStatus = function() {
             };
 
             recorder.onstop = function () {
-               return new Blob(chunks,
+               window.toUpload = new Blob(chunks,
                                       { type: 'video/webm' });
-                resolve()
+               resolve()
             };
 
             recorder.start();
