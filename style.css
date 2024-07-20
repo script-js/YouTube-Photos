@@ -53,4 +53,40 @@
   position: absolute;
   right: 20px;
   bottom: 20px;
+  cursor: pointer;
 }
+
+nav {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: whitesmoke;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  text-align: center;
+  display:flex;
+  justify-content: end
+}
+
+nav .logobox {
+  justify-self: start;
+  display: flex;
+  align-items: center;
+  width: fit-content;
+  gap: 5px;
+}
+
+nav a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+nav a:hover:not(.active) {
+  background-color: #767575;
+  opacity: 0.5;
+}
+
+nav a.active {background-color: #767575;}
