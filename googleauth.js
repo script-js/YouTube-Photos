@@ -569,6 +569,9 @@ UploadVideo.prototype.pollForVideoStatus = function() {
                     const img = new Image();
                     img.src = URL.createObjectURL(file);
                     images.push(img);
+                    window.ftype = "image"
+                } else if (file.type.match('video.*')) {
+                   window.ftype = "video"
                 }
             }
         });
@@ -593,16 +596,14 @@ UploadVideo.prototype.pollForVideoStatus = function() {
             };
 
             recorder.onstop = function () {
-                const blob = new Blob(chunks,
+                return new Blob(chunks,
                                       { type: 'video/webm' });
-                const url = URL.createObjectURL(blob);
-                console.log(blob)
-                console.log(url)
             };
 
             recorder.start();
             setTimeout(function() {
               recorder.stop()
+               return;
             },1000)
             const drawFrame = () => {
                 if (currentImageIndex >= images.length) {
