@@ -538,7 +538,7 @@ canvas.height = 1000
                 $('#uploadText').text("Uploading...")
                uploadFile(toUpload);
               } else {
-                setTimeout(createVid,500)
+                setTimeout(function() {createVid(uploadFile)},500)
               }
             };
             setTimeout(function() {
