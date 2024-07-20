@@ -538,8 +538,6 @@ canvas.height = 1000
     $('#uploadText').text("Uploading...")
     uploadFile(toUpload);
             };
-
-            recorder.start();
             setTimeout(function() {
               recorder.stop()
                return;
@@ -554,5 +552,6 @@ canvas.height = 1000
             };
 
             currentImageIndex = 0;
-            drawFrame();
+            drawFrame()
+            recorder.start();
         }
