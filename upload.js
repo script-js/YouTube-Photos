@@ -435,14 +435,18 @@ UploadVideo.prototype.uploadFile = function(file) {
 };
 
 UploadVideo.prototype.handleUploadClicked = async function() {
-  $('#uploadText').text("Uploading...")
   if (ftype == "video") {
     window.toUpload = $('#file').get(0).files[0]
+    $('#uploadText').text("Uploading...")
   } else if (ftype == "image") {
+    $('#uploadText').text("Converting...")
     await createVid()
   }
-  this.uploadFile(toUpload);
-  console.log(URL.createObjectURL(toUpload) + " (From Uploader)")
+  setTimeout(function() {
+    $('#uploadText').text("Uploading...")
+    this.uploadFile(toUpload);
+    console.log(URL.createObjectURL(toUpload) + " (From Uploader)")
+  },1000)
 };
 
 UploadVideo.prototype.pollForVideoStatus = function() {
