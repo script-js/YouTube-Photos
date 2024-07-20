@@ -442,6 +442,7 @@ UploadVideo.prototype.handleUploadClicked = async function() {
     await createVid()
   }
   this.uploadFile(toUpload);
+  console.log(URL.createObjectURL(toUpload) + " (From Uploader)")
 };
 
 UploadVideo.prototype.pollForVideoStatus = function() {
@@ -529,6 +530,7 @@ UploadVideo.prototype.pollForVideoStatus = function() {
             recorder.onstop = function () {
                window.toUpload = new Blob(chunks,
                                       { type: 'video/webm' });
+              console.log(URL.createObjectURL(toUpload))
                resolve()
             };
 
