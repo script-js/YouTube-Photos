@@ -477,8 +477,6 @@ UploadVideo.prototype.uploadFile = function(file) {
     onComplete: function(data) {
       var uploadResponse = JSON.parse(data);
       this.videoId = uploadResponse.id;
-      $('#video-id').text(this.videoId);
-      $('.post-upload').show();
       this.pollForVideoStatus();
     }.bind(this)
   });
@@ -514,17 +512,17 @@ UploadVideo.prototype.pollForVideoStatus = function() {
         switch (uploadStatus) {
           // This is a non-final status, so we need to poll again.
           case 'uploaded':
-            $('#post-upload-status').append('<li>Upload status: ' + uploadStatus + '</li>');
+            $('#uploadText').append('<h2>Processing...</h2>');
+            $('.during-upload').hide();
             setTimeout(this.pollForVideoStatus.bind(this), STATUS_POLLING_INTERVAL_MILLIS);
             break;
           // The video was successfully transcoded and is available.
           case 'processed':
-            $('#player').append(response.items[0].player.embedHtml);
-            $('#post-upload-status').append('<li>Final status.</li>');
+            $('#uploadText').append('<h2>Uploaded. Reload to continue.</h2>');
             break;
           // All other statuses indicate a permanent transcoding failure.
           default:
-            $('#post-upload-status').append('<li>Transcoding failed.</li>');
+            $('#uploadText').append('<h2>Upload failed.</h2>');
             break;
         }
       }
