@@ -44,3 +44,13 @@
   cursor: pointer;
 }
 
+#upload {
+  padding: 30px;
+  font-size: 40px;
+  background: #464545;
+  border: 1px solid gray;
+  border-radius: 100%;
+  position: absolute;
+  right: 20px;
+  bottom: 20px;
+}
