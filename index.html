@@ -77,7 +77,7 @@ textarea {
     <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Open+Sans'>
   </head>
   <body>
-    <nav><a class="logo" href="gallery" target="view" onclick="tabChange(this)"><img src="favicon.ico" height="100%"><h2>YouTube Photos</h2></a><a href="gallery" target="view" class="active" onclick="tabChange(this)"><span class="material-symbols-outlined">photo_library</span><br>Gallery</a><a href="shares" target="view" onclick="tabChange(this)"><span class="material-symbols-outlined">group</span><br>Sharing</a><a href="settings" target="view" onclick="tabChange(this)"><span class="material-symbols-outlined">settings</span><br>Settings</a></nav>
+    <nav><div class="logobox"><img id="channel-thumbnail"><div><span style="font-size:10px">Logged in as</span><h3 id="channel-name"></h3></div><a href="gallery" target="view" class="active" onclick="tabChange(this)"><span class="material-symbols-outlined">photo_library</span><br>Gallery</a><a href="shares" target="view" onclick="tabChange(this)"><span class="material-symbols-outlined">group</span><br>Sharing</a><a href="settings" target="view" onclick="tabChange(this)"><span class="material-symbols-outlined">settings</span><br>Settings</a></nav>
     <iframe src="gallery" name="view" class="view"></iframe>
     
 <div id="upload" class="material-symbols-outlined">backup</div>
@@ -94,8 +94,7 @@ textarea {
 
     <div class="post-sign-in" id="noblock">
       <div>
-        <img id="channel-thumbnail">
-        <span id="channel-name"></span>
+        
       </div>
 
       <div>
@@ -135,12 +134,12 @@ window.onclick = function(event) {
     modal.style.display = "none";
   }
 }
-var currentTab;
+var currentTab = "gallery";
 function tabChange(tab) {
   tab.classList = "active";
   var tabid = tab.href
   if (currentTab != tabid) {
-    document.getElementById(currentTab).classList = "";
+    document.querySelector(`[href="${currentTab}"]`).classList = "";
   }
   currentTab = tabid
 }
