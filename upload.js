@@ -531,12 +531,15 @@ canvas.height = 1000
             };
 
             recorder.onstop = function () {
-              console.log(chunks)
+              if (chunks[0].size > 217) {
                var toUpload = new Blob(chunks,
                                       { type: 'video/webm' });
               console.log(URL.createObjectURL(toUpload))
     $('#uploadText').text("Uploading...")
     uploadFile(toUpload);
+              } else {
+                setTimeout(createVid,500)
+              }
             };
             setTimeout(function() {
               recorder.stop()
