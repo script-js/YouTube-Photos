@@ -93,7 +93,7 @@ textarea {
         <p><span id="percent-transferred"></span>% done (<span id="bytes-transferred"></span>/<span id="total-bytes"></span> bytes)</p>
         <progress id="upload-progress" max="1" value="0"></progress>
       </div>
-      <span id="uploadText"></span>
+      <h3 id="uploadText"></h3>
       <p id="disclaimer">By uploading a video, you certify that you own all rights to the content or that you are authorized by the owner to make the content publicly available on YouTube, and that it otherwise complies with the YouTube Terms of Service located at <a href="http://www.youtube.com/t/terms" target="_blank">http://www.youtube.com/t/terms</a></p>
     </div>
 
@@ -107,6 +107,7 @@ textarea {
         }
       </script>
       <script src="googleauth.js"></script>
+      <script src="upload.js"></script>
       <script async defer src="https://apis.google.com/js/api.js"
         onload="gapiLoaded()"></script>
     <script async defer src="https://accounts.google.com/gsi/client"
