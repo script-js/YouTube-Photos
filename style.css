@@ -94,7 +94,8 @@ nav a.active {background-color: #767575;}
 body,html {
   background: black;
   width: 98%;
-  heieght: 98%
+  height: 98%;
+  scrollbar-width: none;
 }
 
 .view {
