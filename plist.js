@@ -24,6 +24,7 @@ var playlist;
             }
         })
       }
+      }
     }.bind(this)
   });
 
