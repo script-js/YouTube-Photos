@@ -79,7 +79,7 @@ textarea {
     <nav><div class="logobox"><img id="channel-thumbnail"><div><span style="font-size:10px">Logged in as</span><h3 id="channel-name"></h3></div></div><div style="display:flex"><a href="gallery" target="view" class="active" onclick="tabChange(this)"><span class="material-symbols-outlined">photo_library</span><br>Gallery</a><a href="shares" target="view" onclick="tabChange(this)"><span class="material-symbols-outlined">group</span><br>Sharing</a><a href="settings" target="view" onclick="tabChange(this)"><span class="material-symbols-outlined">settings</span><br>Settings</a></div></nav>
     <iframe src="gallery" name="view" class="view"></iframe>
     
-<div id="upload" onclick="file.click()" class="material-symbols-outlined">backup</div>
+<div id="upload" class="material-symbols-outlined">backup</div>
 
 <!-- The Modal -->
 <div id="popup" class="modal">
@@ -119,7 +119,7 @@ var span = document.getElementsByClassName("close")[0];
 
 // When the user clicks the button, open the modal 
 btn.onclick = function() {
-  modal.style.display = "block";
+  file.click()
 }
 
 // When the user clicks on <span> (x), close the modal
