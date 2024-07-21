@@ -26,8 +26,9 @@ async function initializeGapiClient() {
       gapi.client.setToken(JSON.parse(token));
       startup()
    } else {
-      window.onclick = null
+      window.onclick = null;
       document.querySelector(".close").style.display = "none";
+      modal.style.display = "block"
    }
    setInterval(expireCheck,500)
 }
