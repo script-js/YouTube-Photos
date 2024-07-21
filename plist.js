@@ -92,3 +92,30 @@ async function addVideoToPlaylist(videoId) {
         return null;
     }
 }
+function add2(videoId) {
+  var xhr = new XMLHttpRequest();
+
+  xhr.open("POST", "https://www.googleapis.com/youtube/v3/playlists", true);
+  xhr.setRequestHeader('Authorization', 'Bearer ' + gapi.client.getToken().access_token);
+  xhr.setRequestHeader('Content-Type', 'application/json');
+
+  xhr.onload = function(e) {
+    if (e.target.status < 400) {
+      var location = e.target.getResponseHeader('Location');
+      this.url = location;
+      this.sendFile_();
+    } else {
+      this.onUploadError_(e);
+    }
+  }.bind(this);
+  xhr.onerror = this.onUploadError_.bind(this);
+  xhr.send(JSON.stringify({
+                snippet: {
+                    playlist,
+                    resourceId: {
+                        kind: 'youtube#video',
+                        videoId,
+                    },
+                },
+            }));
+}
