@@ -119,7 +119,6 @@ body,html {
 }
 
 .load {
-  font-family: 'Material Symbols Outlined';
   animation-name: spin;
   animation-duration: 2000ms;
   animation-iteration-count: infinite;
