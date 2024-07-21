@@ -7,19 +7,17 @@ async function getPlaylist() {
       part: 'snippet',
       mine: true
     },
-    callback: function(response) {
+    callback: async function(response) {
       if (response.error) {
         console.log(response.error.message);
       } else {
         if (response.kind == "youtube#playlistListResponse") {
-          response.items.forEach(function(k) {
-             console.log(k)
+          await response.items.forEach(function(k) {
              if (k.snippet.title == "YouTubePhotosLibrary") {
-                console.log("found")
                 console.log(k)
              }
           })
-         
+         alert()
         }
       }
     }.bind(this)
