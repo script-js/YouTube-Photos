@@ -11,16 +11,21 @@ var playlist;
         console.log(response.error.message);
       } else {
         if (response.kind == "youtube#playlistListResponse") {
+             new Promise(function(reslove) {
              response.items.forEach(function(k) {
                if (k.snippet.title == "YouTubePhotosLibrary") {
                  playlist = k;
+                 resolve()
                }
              })
+                }).then(function() {
+            if (!playlist) {
+               createPlaylist()
+            }
         }
       }
     }.bind(this)
   });
-}
 
 // Replace 'YOUR_API_KEY' and 'YOUR_CHANNEL_ID' with your actual API key and channel ID
 async function createPlaylist() {
