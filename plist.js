@@ -111,7 +111,7 @@ function add2(videoId) {
   xhr.onerror = alert
   xhr.send(JSON.stringify({
                 snippet: {
-                    playlist,
+                    id: playlist,
                     resourceId: {
                         kind: 'youtube#video',
                         videoId,
