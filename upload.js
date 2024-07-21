@@ -501,8 +501,8 @@ UploadVideo.prototype.pollForVideoStatus = function() {
             for (let i = 0; i < files.length; i++) {
                 const file = files[i];
                 vMetadata = {
-                  date: file.files[0].lastModified,
-                  type: file.files[0].type
+                  date: document.getElementById("file").files[0].lastModified,
+                  type: document.getElementById("file").files[0].type
                 }
                 if (file.type.match('image.*')) {
                     const img = new Image();
