@@ -126,3 +126,17 @@ body,html {
   animation-timing-function: linear;
   display: block;
 }
+
+button {
+  background: #464545;
+  border: none;
+  padding: 5px;
+  border-radius: 3px;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+button:hover {
+  background: #767575;
+  border-radius: 1px;
+}
