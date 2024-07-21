@@ -136,9 +136,9 @@ window.onclick = function(event) {
 var currentTab = "gallery";
 function tabChange(tab) {
   tab.classList = "active";
-  var tabid = tab.href
+  var tabid = tab.href.replace(location.href,"")
   if (currentTab != tabid) {
-    document.querySelector(`[href="${currentTab.replace(location.href,"")}"]`)
+    document.querySelector(`[href="${currentTab}"]`)
   }
   currentTab = tabid
 }
