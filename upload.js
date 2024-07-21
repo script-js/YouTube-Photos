@@ -401,7 +401,7 @@ UploadVideo.prototype.uploadFile = function(file) {
         message = errorResponse.error.message;
       } finally {
         alert("Error:" + message);
-        $('#uploadText').text("Upload Failed<br><span style='font-size:10px'>" + message + "</span>")
+        $('#uploadText').innerHTML = "Upload Failed<br><span style='font-size:10px'>" + message + "</span>"
       }
     }.bind(this),
     onProgress: function(data) {
