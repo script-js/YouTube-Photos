@@ -17,9 +17,32 @@ async function getPlaylist() {
                 console.log(k)
              }
           })
-         alert()
         }
       }
     }.bind(this)
   });
+}
+
+// Replace 'YOUR_API_KEY' and 'YOUR_CHANNEL_ID' with your actual API key and channel ID
+async function createPlaylist() {
+    const playlistTitle = 'YouTubePhotosLibrary';
+
+    try {
+        // Create the playlist
+        const response = await fetch(`https://www.googleapis.com/youtube/v3/playlists?part=snippet&key=${API_KEY}`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                snippet: {
+                    title: playlistTitle,
+                    description: 'A collection of awesome photos and memories!',
+                },
+            }),
+        });
+        playlist = await response.json().id
+    } catch (error) {
+        console.error('Error creating playlist:', error);
+    }
 }
