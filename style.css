@@ -108,3 +108,20 @@ body,html {
   left: 0;
   height: 90%;
 }
+
+@keyframes spin {
+    from {
+        transform:rotate(0deg);
+    }
+    to {
+        transform:rotate(360deg);
+    }
+}
+
+.load {
+  font-family: 'Material Symbols Outlined';
+  animation-name: spin;
+  animation-duration: 2000ms;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+}
