@@ -25,6 +25,9 @@ async function initializeGapiClient() {
    if (token) {
       gapi.client.setToken(JSON.parse(token));
       startup()
+   } else {
+      window.onclick = null
+      document.querySelector(".close").style.display = "none";
    }
    setInterval(expireCheck,500)
 }
@@ -42,10 +45,12 @@ function gisLoaded() {
 }
 
 async function expireCheck() {
-  var data = await (await fetch("https://www.googleapis.com/oauth2/v1/tokeninfo?access_token=" + gapi.auth.getToken().access_token)).json();
-  if (data.error == "invalid_token") {
-     localStorage.setItem("gapi_token","")
-     location.reload()
+  if (gapi.auth.getToken()) {
+    var data = await (await fetch("https://www.googleapis.com/oauth2/v1/tokeninfo?access_token=" + gapi.auth.getToken().access_token)).json();
+    if (data.error == "invalid_token") {
+       localStorage.setItem("gapi_token","")
+       location.reload()
+    }
   }
 }
 
@@ -55,6 +60,7 @@ function handleAuthClick() {
          throw (resp);
       }
       localStorage.setItem('gapi_token', JSON.stringify(gapi.client.getToken()));
+      location.reload()
    }
    if (gapi.client.getToken() === null) {
       // Prompt the user to select a Google Account and ask for consent to share their data
