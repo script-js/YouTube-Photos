@@ -444,6 +444,7 @@ UploadVideo.prototype.handleUploadClicked = function() {
     $('#uploadText').text("Converting...")
     createVid(this.uploadFile)
   }
+  uploadProg()
 };
 
 UploadVideo.prototype.pollForVideoStatus = function() {
@@ -469,7 +470,8 @@ UploadVideo.prototype.pollForVideoStatus = function() {
             break;
           // The video was successfully transcoded and is available.
           case 'processed':
-            $('#uploadText').text('Uploaded. Reload to continue.');
+            $('#uploadText').text('Upload Complete');
+            uploadProg(true)
             break;
           // All other statuses indicate a permanent transcoding failure.
           default:
@@ -559,3 +561,17 @@ UploadVideo.prototype.pollForVideoStatus = function() {
             drawFrame()
             recorder.start();
         }
+
+function uploadProg(off) {
+  if (off) {
+    btn.onclick = null
+    upload.innerHTML = "check"
+    setTimeout(function () {
+      upload.innerHTML = "backup"
+      btn.onclick = function() {file.click()}
+    },1500)
+  } else {
+    btn.onclick = function() {modal.style.display = "block"}
+    upload.innerHTML = "<span class='spin'>progress_activity</span>"
+  }
+}
