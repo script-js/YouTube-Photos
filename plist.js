@@ -11,22 +11,49 @@ var playlist;
         console.log(response.error.message);
       } else {
         if (response.kind == "youtube#playlistListResponse") {
-           new Promise(function(reslove) {
              response.items.forEach(function(k) {
                if (k.snippet.title == "YouTubePhotosLibrary") {
                  playlist = k;
                  resolve()
                }
              })
-           }).then(function() {
                if (!playlist) {
                  createPlaylist()
-               }
-             })  
+               } 
         }
       }
     }.bind(this)
   });
+}
+
+// Replace 'YOUR_API_KEY' and 'YOUR_CHANNEL_ID' with your actual API key and channel ID
+async function createPlaylist() {
+    const playlistTitle = 'YouTubePhotosLibrary';
+
+    try {
+        // Create the playlist
+        const response = await fetch(`https://www.googleapis.com/youtube/v3/playlists?part=snippet&key=${API_KEY}`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                snippet: {
+                    title: playlistTitle,
+                    description: 'The playlist used by YouTube Photos. DO NOT DELETE THIS PLAYLIST.',
+                },
+            }),
+        });
+
+        const data = await response.json();
+        const playlistId = data.id;
+
+        console.log(`Playlist "${playlistTitle}" created with ID: ${playlistId}`);
+        playlist = playlistId;
+    } catch (error) {
+        console.error('Error creating playlist:', error);
+        return null;
+    }
 }
 
 async function addVideoToPlaylist(videoId) {
