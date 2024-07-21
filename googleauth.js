@@ -84,6 +84,6 @@ function handleSignoutClick() {
       google.accounts.oauth2.revoke(token.access_token);
       gapi.client.setToken('');
       localStorage.setItem("gapi_token","")
-      location.replace("login")
+      window.top.location.reload()
    }
 }
