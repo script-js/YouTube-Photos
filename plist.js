@@ -103,12 +103,11 @@ function add2(videoId) {
     if (e.target.status < 400) {
       var location = e.target.getResponseHeader('Location');
       this.url = location;
-      this.sendFile_();
     } else {
-      this.onUploadError_(e);
+      console.error(e.target.status)
     }
   }.bind(this);
-  xhr.onerror = this.onUploadError_.bind(this);
+  xhr.onerror = alert
   xhr.send(JSON.stringify({
                 snippet: {
                     playlist,
