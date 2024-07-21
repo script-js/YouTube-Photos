@@ -9,7 +9,7 @@ function getChannel() {
       if (response.error) {
         console.log(response.error.message);
       } else {
-        console.log(response)
+        return response.items[0].id
       }
     }.bind(this)
   });
@@ -39,6 +39,23 @@ async function getPlaylists() {
         console.error('Error fetching playlists:', error);
         return null;
     }
+}
+
+function getPlaylists2() {
+   this.gapi.client.request({
+    path: '/youtube/v3/playlists',
+    params: {
+      part: 'snippet',
+      mine: true
+    },
+    callback: function(response) {
+      if (response.error) {
+        console.log(response.error.message);
+      } else {
+        console.log(response)
+      }
+    }.bind(this)
+  });
 }
 
 // Call the function
