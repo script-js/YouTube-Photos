@@ -1,5 +1,5 @@
 var playlist;
-
+function getPlaylist() {
    gapi.client.request({
     path: '/youtube/v3/playlists',
     params: {
@@ -27,6 +27,7 @@ var playlist;
       }
     }.bind(this)
   });
+}
 
 // Replace 'YOUR_API_KEY' and 'YOUR_CHANNEL_ID' with your actual API key and channel ID
 async function createPlaylist() {
