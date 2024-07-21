@@ -1,7 +1,7 @@
 var playlist;
 
-function getPlaylist() {
-   gapi.client.request({
+async function getPlaylist() {
+   await gapi.client.request({
     path: '/youtube/v3/playlists',
     params: {
       part: 'snippet',
@@ -12,9 +12,9 @@ function getPlaylist() {
         console.log(response.error.message);
       } else {
         if (response.kind == "youtube#playlistListResponse") {
-          var playlist = response.items.forEach(function(k) {
+          response.items.forEach(function(k) {
              if (k.snippet.title == "YouTubePhotosLibrary") {
-                return k;
+                var playlist = k;
              }
           })
          console.log(playlist)
@@ -23,6 +23,3 @@ function getPlaylist() {
     }.bind(this)
   });
 }
-
-// Call the function
-getPlaylists();
