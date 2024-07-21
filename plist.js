@@ -17,12 +17,12 @@ var playlist;
                  playlist = k;
                  resolve()
                }
-             }).then(function() {
-            if (!playlist) {
-               createPlaylist()
-            }
              })
-         })
+           }).then(function() {
+               if (!playlist) {
+                 createPlaylist()
+               }
+             })  
         }
       }
     }.bind(this)
