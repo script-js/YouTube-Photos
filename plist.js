@@ -14,12 +14,8 @@ var playlist;
              response.items.forEach(function(k) {
                if (k.snippet.title == "YouTubePhotosLibrary") {
                  playlist = k;
-                 resolve()
                }
              })
-               if (!playlist) {
-                 createPlaylist()
-               } 
         }
       }
     }.bind(this)
