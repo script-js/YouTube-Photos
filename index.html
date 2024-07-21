@@ -159,7 +159,7 @@ function tabChange(tab) {
           window.uploadVideo = new UploadVideo();
           uploadVideo.ready(gapi.client.getToken().access_token);
         }
-        document.getElementByName("view").src = "gallery"
+        document.getElementsByName("view")[0].src = "gallery"
       </script>
       <script src="googleauth.js"></script>
       <script src="upload.js"></script>
