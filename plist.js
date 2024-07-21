@@ -13,11 +13,13 @@ async function getPlaylist() {
       } else {
         if (response.kind == "youtube#playlistListResponse") {
           response.items.forEach(function(k) {
+             console.log(k)
              if (k.snippet.title == "YouTubePhotosLibrary") {
-                var playlist = k;
+                console.log("found")
+                console.log(k)
              }
           })
-         console.log(playlist)
+         
         }
       }
     }.bind(this)
