@@ -138,7 +138,7 @@ function tabChange(tab) {
   tab.classList = "active";
   var tabid = tab.href.replace(location.href,"")
   if (currentTab != tabid) {
-    document.querySelector(`[href="${currentTab}"]`)
+    document.querySelector(`[href="${currentTab}"]`).classList = ""
   }
   currentTab = tabid
 }
