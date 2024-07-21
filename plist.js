@@ -1,30 +1,34 @@
 var playlist;
 
-async function getPlaylist() {
-   await gapi.client.request({
+   gapi.client.request({
     path: '/youtube/v3/playlists',
     params: {
       part: 'snippet',
       mine: true
     },
-    callback: async function(response) {
+    callback: function(response) {
       if (response.error) {
         console.log(response.error.message);
       } else {
         if (response.kind == "youtube#playlistListResponse") {
-          await response.items.forEach(function(k) {
-             if (k.snippet.title == "YouTubePhotosLibrary") {
-                playlist = k.id
+           new Promise(function(reslove) {
+             response.items.forEach(function(k) {
+               if (k.snippet.title == "YouTubePhotosLibrary") {
+                 playlist = k;
+                 resolve()
+               }
+             }).then(function() {
+            if (!playlist) {
+               createPlaylist()
+            }
              }
-          })
+         },1000)
         }
       }
     }.bind(this)
   });
 }
 
-// Replace 'YOUR_API_KEY' and 'YOUR_CHANNEL_ID' with your actual API key and channel ID
-// Replace 'YOUR_API_KEY', 'YOUR_PLAYLIST_ID', and 'YOUR_VIDEO_ID' with actual values
 async function addVideoToPlaylist(videoId) {
     try {
         const response = await fetch(`https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&key=${API_KEY}`, {
