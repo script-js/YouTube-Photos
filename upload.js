@@ -375,7 +375,7 @@ UploadVideo.prototype.uploadFile = function(file) {
   var metadata = {
     snippet: {
       title: document.getElementById("file").files.item(0).name,
-      description: "Uploaded by YouTube Photos",
+      description: JSON.stringify(vMetadata),
       tags: this.tags,
       categoryId: this.categoryId
     },
@@ -493,13 +493,17 @@ UploadVideo.prototype.pollForVideoStatus = function() {
         let images = [];
         let currentImageIndex = 0;
 
-        // Load selected images
+        var vMetadata;
         imageInput.addEventListener('change',
                                     function () {
             images = [];
             const files = this.files;
             for (let i = 0; i < files.length; i++) {
                 const file = files[i];
+                vMetadata = {
+                  date: file.files[0].lastModified,
+                  type: file.files[0].type
+                }
                 if (file.type.match('image.*')) {
                     const img = new Image();
                     img.src = URL.createObjectURL(file);
@@ -509,6 +513,7 @@ UploadVideo.prototype.pollForVideoStatus = function() {
                       canvas.width = this.width
                       canvas.height = this.height
                     };
+                    vMetadata.imageSize = `${this.width} x ${this.height}`
                 } else if (file.type.match('video.*')) {
                    window.ftype = "video"
                 }
