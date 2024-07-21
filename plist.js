@@ -42,6 +42,7 @@ async function createPlaylist() {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + gapi.client.getToken().access_token
             },
             body: JSON.stringify({
                 snippet: {
@@ -68,6 +69,7 @@ async function addVideoToPlaylist(videoId) {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + gapi.client.getToken().access_token
             },
             body: JSON.stringify({
                 snippet: {
