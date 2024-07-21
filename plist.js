@@ -100,6 +100,7 @@ function add2(videoId) {
   xhr.setRequestHeader('Content-Type', 'application/json');
 
   xhr.onload = function(e) {
+     console.log(e.target.response)
     if (e.target.status < 400) {
       var location = e.target.getResponseHeader('Location');
       this.url = location;
