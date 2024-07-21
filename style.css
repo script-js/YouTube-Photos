@@ -124,4 +124,5 @@ body,html {
   animation-duration: 2000ms;
   animation-iteration-count: infinite;
   animation-timing-function: linear;
+  display: block;
 }
