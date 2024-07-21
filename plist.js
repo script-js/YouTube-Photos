@@ -11,18 +11,21 @@ function getPlaylist() {
         console.log(response.error.message);
       } else {
         if (response.kind == "youtube#playlistListResponse") {
-             new Promise(function(reslove) {
+           var ct = 0
              response.items.forEach(function(k) {
                if (k.snippet.title == "YouTubePhotosLibrary") {
-                 playlist = k;
-                 resolve()
+                 playlist = k.id;
                }
+               ct += 1
              })
-                }).then(function() {
-            if (!playlist) {
-               createPlaylist()
+           var int1 = setInterval(function() {
+            if (ct == response.items.length || ct > response.items.length) {
+               clearInterval(int1)
+              if (!playlist) {
+                 createPlaylist()
+              }
             }
-        })
+           },100)
       }
       }
     }.bind(this)
