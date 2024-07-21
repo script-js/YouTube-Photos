@@ -40,6 +40,7 @@
 .close:hover,
 .close:focus {
   color: gray;
+  transition: ease 150ms;
   text-decoration: none;
   cursor: pointer;
 }
@@ -54,6 +55,11 @@
   right: 20px;
   bottom: 20px;
   cursor: pointer;
+  transition: ease 200ms;
+}
+
+#upload:hover {
+  background: #767575;
 }
 
 nav {
