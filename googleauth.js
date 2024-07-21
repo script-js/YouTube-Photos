@@ -6,7 +6,7 @@ var FNAME = "syncjsdata.json"
 const DISCOVERY_DOC = 'https://www.googleapis.com/discovery/v1/apis/drive/v3/rest';
 
 // Set API access scope before proceeding authorization request
-const SCOPES = 'https://www.googleapis.com/auth/youtube.download \ https://www.googleapis.com/auth/youtube.upload \ https://www.googleapis.com/auth/youtube.force-ssl \ https://www.googleapis.com/auth/youtube';
+const SCOPES = 'https://www.googleapis.com/auth/youtube.download \ https://www.googleapis.com/auth/youtube.upload \ https://www.googleapis.com/auth/youtube.force-ssl';
 let tokenClient;
 let gapiInited = false;
 let gisInited = false;
