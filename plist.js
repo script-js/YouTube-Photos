@@ -22,7 +22,7 @@ var playlist;
             if (!playlist) {
                createPlaylist()
             }
-        }
+        })
       }
     }.bind(this)
   });
