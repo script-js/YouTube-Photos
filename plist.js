@@ -14,7 +14,7 @@ async function getPlaylist() {
         if (response.kind == "youtube#playlistListResponse") {
           await response.items.forEach(function(k) {
              if (k.snippet.title == "YouTubePhotosLibrary") {
-                console.log(k)
+                playlist = k.id
              }
           })
         }
@@ -24,25 +24,32 @@ async function getPlaylist() {
 }
 
 // Replace 'YOUR_API_KEY' and 'YOUR_CHANNEL_ID' with your actual API key and channel ID
-async function createPlaylist() {
-    const playlistTitle = 'YouTubePhotosLibrary';
-
+// Replace 'YOUR_API_KEY', 'YOUR_PLAYLIST_ID', and 'YOUR_VIDEO_ID' with actual values
+async function addVideoToPlaylist(videoId) {
     try {
-        // Create the playlist
-        const response = await fetch(`https://www.googleapis.com/youtube/v3/playlists?part=snippet&key=${API_KEY}`, {
+        const response = await fetch(`https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&key=${API_KEY}`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify({
                 snippet: {
-                    title: playlistTitle,
-                    description: 'A collection of awesome photos and memories!',
+                    playlist,
+                    resourceId: {
+                        kind: 'youtube#video',
+                        videoId,
+                    },
                 },
             }),
         });
-        playlist = await response.json().id
+
+        const data = await response.json();
+        console.log('Video added to playlist:', data);
+
+        // You can handle the response as needed (e.g., show a success message)
+        return data;
     } catch (error) {
-        console.error('Error creating playlist:', error);
+        console.error('Error adding video to playlist:', error);
+        return null;
     }
 }
