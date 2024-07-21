@@ -11,22 +11,5 @@ function getPlaylist(id) {
          headers: setHeaders
       };
       return fetch(url, setOptions)
-         .then(response => {
-            if (response.ok) {
-               var reader = response.body.getReader();
-               var decoder = new TextDecoder();
-               return reader.read().then(function (result) {
-                  var data = decoder.decode(result.value, {
-                     stream: !result.done
-                  });
-                  return data;
-               });
-            } else {
-               console.error("Response error");
-            }
-         })
-         .catch(error => {
-            console.error(error.message);
-         });
    }
 }
