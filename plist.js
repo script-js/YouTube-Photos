@@ -43,8 +43,7 @@ function createPlaylist() {
           "title": "YouTubePhotosLibrary",
           "description": "YouTube Photos Library. DO NOT DELETE: If you delete this playlist, YouTube photos cannot see any assets that were uploaded before you deleted it.",
           "tags": [
-            "sample playlist",
-            "API call"
+            "YouTube Photos"
           ],
           "defaultLanguage": "en"
         },
@@ -55,7 +54,7 @@ function createPlaylist() {
     })
         .then(function(response) {
                 // Handle the results here (response.result has the parsed body).
-                console.log("Response (create)", response);
+                playlist = JSON.parse(response.body).id
               },
               function(err) { console.error("Execute error", err); });
 }
