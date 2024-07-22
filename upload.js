@@ -439,19 +439,14 @@ UploadVideo.prototype.uploadFile = function(file) {
 };
 
 UploadVideo.prototype.handleUploadClicked = function() {
-  this.uploadFile($('#file').get(0).files[0]);
-  /*
   if (ftype == "video") {
-    window.toUpload = $('#file').get(0).files[0]
+    this.uploadFile($('#file').get(0).files[0]);
     $('#uploadText').text("Uploading...")
-    this.uploadFile(toUpload);
-    console.log(URL.createObjectURL(toUpload) + " (Video)")
   } else if (ftype == "image") {
     $('#uploadText').text("Converting...")
     createVid(this.uploadFile)
   }
   uploadProg()
-  */
 };
 
 UploadVideo.prototype.pollForVideoStatus = function() {
@@ -547,11 +542,9 @@ UploadVideo.prototype.pollForVideoStatus = function() {
 
             recorder.onstop = function () {
               if (chunks[0].size > 217) {
-                var toUpload = new Blob(chunks,
-                                      { type: 'video/webm' });
-                console.log(URL.createObjectURL(toUpload))
+                uploadFile(new Blob(chunks,
+                                      { type: 'video/webm' }));
                 $('#uploadText').text("Uploading...")
-               uploadFile(toUpload);
               } else {
                 setTimeout(function() {createVid(uploadFile)},500)
               }
