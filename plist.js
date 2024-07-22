@@ -95,7 +95,7 @@ async function addVideoToPlaylist(videoId) {
 function add2(videoId) {
   var xhr = new XMLHttpRequest();
 
-  xhr.open("POST", `https://www.googleapis.com/youtube/v3/playlistItems?key=${API_KEY}&part=contentDetails`, true);
+  xhr.open("POST", `https://www.googleapis.com/youtube/v3/playlistItems?key=${API_KEY}&part=id`, true);
   xhr.setRequestHeader('Authorization', 'Bearer ' + gapi.client.getToken().access_token);
   xhr.setRequestHeader('Content-Type', 'application/json');
 
@@ -113,7 +113,7 @@ function add2(videoId) {
                     id: playlist,
                     resourceId: {
                         kind: 'youtube#video',
-                        videoId,
+                        id: videoId
                     }
             }));
 }
