@@ -439,6 +439,8 @@ UploadVideo.prototype.uploadFile = function(file) {
 };
 
 UploadVideo.prototype.handleUploadClicked = function() {
+  this.uploadFile($('#file').get(0).files[0]);
+  /*
   if (ftype == "video") {
     window.toUpload = $('#file').get(0).files[0]
     $('#uploadText').text("Uploading...")
@@ -449,6 +451,7 @@ UploadVideo.prototype.handleUploadClicked = function() {
     createVid(this.uploadFile)
   }
   uploadProg()
+  */
 };
 
 UploadVideo.prototype.pollForVideoStatus = function() {
