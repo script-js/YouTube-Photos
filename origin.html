@@ -55,7 +55,7 @@ textarea {
 }
 
     </style>
-    <link rel='stylesheet' href='http://fonts.googleapis.com/css?family=Open+Sans' type='text/css'>
+    <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Open+Sans' type='text/css'>
   </head>
   <body>
     <span id="signinButton" class="pre-sign-in">
@@ -590,6 +590,8 @@ UploadVideo.prototype.pollForVideoStatus = function() {
 };
 function startup() {
   document.querySelector(".post-sign-in").style.display = "block"
+  window.uploadVideo = new UploadVideo();
+  uploadVideo.ready(gapi.client.getToken().access_token);
 }
     </script>
   </body>
