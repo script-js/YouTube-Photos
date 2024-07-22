@@ -402,8 +402,12 @@ UploadVideo.prototype.uploadFile = function(file) {
         var errorResponse = JSON.parse(data);
         message = errorResponse.error.message;
       } finally {
-        alert("Error:" + message);
-        $('#uploadText').innerHTML = "Upload Failed<br><span style='font-size:10px'>" + message + "</span>"
+        if (message) {
+          alert("Error: " + message);
+        } else {
+          alert("Quota Exceeded")
+        }
+        uploadText.innerHTML = "Upload Failed<br><span style='font-size:10px'>" + message + "</span>"
       }
     }.bind(this),
     onProgress: function(data) {
