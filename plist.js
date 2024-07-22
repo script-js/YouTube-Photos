@@ -33,87 +33,52 @@ function getPlaylist() {
 }
 
 // Replace 'YOUR_API_KEY' and 'YOUR_CHANNEL_ID' with your actual API key and channel ID
-async function createPlaylist() {
-    const playlistTitle = 'YouTubePhotosLibrary';
-
-    try {
-        // Create the playlist
-        const response = await fetch(`https://www.googleapis.com/youtube/v3/playlists?part=snippet&key=${API_KEY}`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': 'Bearer ' + gapi.client.getToken().access_token
-            },
-            body: JSON.stringify({
-                snippet: {
-                    title: playlistTitle,
-                    description: 'The playlist used by YouTube Photos. DO NOT DELETE THIS PLAYLIST.',
-                },
-            }),
-        });
-
-        const data = await response.json();
-        const playlistId = data.id;
-
-        console.log(`Playlist "${playlistTitle}" created with ID: ${playlistId}`);
-        playlist = playlistId;
-    } catch (error) {
-        console.error('Error creating playlist:', error);
-        return null;
-    }
+function createPlaylist() {
+    return gapi.client.youtube.playlists.insert({
+      "part": [
+        "snippet,status"
+      ],
+      "resource": {
+        "snippet": {
+          "title": "YouTubePhotosLibrary",
+          "description": "YouTube Photos Library. DO NOT DELETE: If you delete this playlist, YouTube photos cannot see any assets that were uploaded before you deleted it.",
+          "tags": [
+            "sample playlist",
+            "API call"
+          ],
+          "defaultLanguage": "en"
+        },
+        "status": {
+          "privacyStatus": "private"
+        }
+      }
+    })
+        .then(function(response) {
+                // Handle the results here (response.result has the parsed body).
+                console.log("Response (create)", response);
+              },
+              function(err) { console.error("Execute error", err); });
 }
 
-async function addVideoToPlaylist(videoId) {
-    try {
-        const response = await fetch(`https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&key=${API_KEY}`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': 'Bearer ' + gapi.client.getToken().access_token
-            },
-            body: JSON.stringify({
-                snippet: {
-                    playlist,
-                    resourceId: {
-                        kind: 'youtube#video',
-                        videoId,
-                    },
-                },
-            }),
-        });
-
-        const data = await response.json();
-        console.log('Video added to playlist:', data);
-
-        // You can handle the response as needed (e.g., show a success message)
-        return data;
-    } catch (error) {
-        console.error('Error adding video to playlist:', error);
-        return null;
-    }
-}
-function add2(videoId) {
-  var xhr = new XMLHttpRequest();
-
-  xhr.open("POST", `https://www.googleapis.com/youtube/v3/playlistItems?key=${API_KEY}&part=id`, true);
-  xhr.setRequestHeader('Authorization', 'Bearer ' + gapi.client.getToken().access_token);
-  xhr.setRequestHeader('Content-Type', 'application/json');
-
-  xhr.onload = function(e) {
-     console.log(e.target.response)
-    if (e.target.status < 400) {
-      var location = e.target.getResponseHeader('Location');
-      this.url = location;
-    } else {
-      console.error(e.target.status)
-    }
-  }.bind(this);
-  xhr.onerror = alert
-  xhr.send(JSON.stringify({
-                    id: playlist,
-                    resourceId: {
-                        kind: 'youtube#video',
-                        id: videoId
-                    }
-            }));
+function addVideoToPlaylist(videoId) {
+    return gapi.client.youtube.playlistItems.insert({
+      "part": [
+        "snippet"
+      ],
+      "resource": {
+        "snippet": {
+          "playlistId": playlist,
+          "position": 0,
+          "resourceId": {
+            "kind": "youtube#video",
+            "videoId": videoId
+          }
+        }
+      }
+    })
+        .then(function(response) {
+                // Handle the results here (response.result has the parsed body).
+                console.log("Response", response);
+              },
+              function(err) { console.error("Execute error", err); });
 }
