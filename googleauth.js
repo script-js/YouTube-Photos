@@ -1,9 +1,8 @@
 const CLIENT_ID = '1042189889229-ecp73b2drihjcm65930381l07m3qm24a.apps.googleusercontent.com';
 const API_KEY = 'AIzaSyAdAjrwSHXXNIrq5XqcI6NACfO8UDVwjfY';
-var FNAME = "syncjsdata.json"
 
 // Discovery URL for APIs used by the quickstart
-const DISCOVERY_DOC = 'https://www.googleapis.com/discovery/v1/apis/drive/v3/rest';
+const DISCOVERY_DOC = 'https://www.googleapis.com/discovery/v1/apis/youtube/v3/rest'
 
 // Set API access scope before proceeding authorization request
 const SCOPES = 'https://www.googleapis.com/auth/youtube.download \ https://www.googleapis.com/auth/youtube.upload \ https://www.googleapis.com/auth/youtube.force-ssl';
