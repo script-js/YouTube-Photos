@@ -45,7 +45,7 @@ function createPlaylist() {
           "tags": [
             "YouTube Photos"
           ],
-          "defaultLanguage": "en"
+          "defaultLanguage": "en-us"
         },
         "status": {
           "privacyStatus": "private"
