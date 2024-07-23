@@ -111,7 +111,7 @@ function getItems() {
                       openViewer(videos[k],{
                          date: JSON.parse(data.description).date,
                          type: JSON.parse(data.description).type,
-                      }
+                      })
                    })
                 })
               }
