@@ -1,24 +1,5 @@
 // Replace 'YOUR_API_KEY' and 'YOUR_VIDEO_ID' with actual values
 async function getPrivateVideoThumbnail(videoId) {
-
-    try {
-        const response = await fetch(`https://www.googleapis.com/youtube/v3/videos?part=snippet&id=${videoId}&key=${API_KEY}`);
-        const data = await response.json();
-
-        // Extract the default thumbnail URL (other sizes available in 'data.snippet.thumbnails')
-        const thumbnailUrl = data.items[0]?.snippet?.thumbnails?.default?.url;
-
-        if (thumbnailUrl) {
-            console.log('Thumbnail URL:', thumbnailUrl);
-            return thumbnailUrl;
-        } else {
-            console.error('Thumbnail not found for the specified video.');
-            return null;
-        }
-    } catch (error) {
-        console.error('Error fetching video details:', error);
-        return null;
-    }
     gapi.client.youtube.videos.list({
       "part": [
         "snippet,contentDetails"
@@ -27,7 +8,6 @@ async function getPrivateVideoThumbnail(videoId) {
     })
         .then(function(response) {
            console.log(response)
-           })
               },
               function(err) { console.error("Execute error", err); });
 }
