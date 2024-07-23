@@ -45,3 +45,23 @@ function updateVid(id,desc,title) {
               },
               function(err) { console.error("Execute error", err); });
   }
+
+function openViewer(id,metadata) {
+    return gapi.client.youtube.videos.update({
+      "part": [
+        "snippet,status,localizations"
+      ],
+      "resource": {
+        "id": id
+        },
+        "status": {
+          "privacyStatus": "unlisted"
+        }
+    })
+        .then(function(response) {
+                // Handle the results here (response.result has the parsed body).
+                console.log("Response", response);
+              },
+              function(err) { console.error("Execute error", err); });
+    window.top.openViewer(id,metadata)
+  }
