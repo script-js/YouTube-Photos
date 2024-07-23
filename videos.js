@@ -19,6 +19,17 @@ async function getPrivateVideoThumbnail(videoId) {
         console.error('Error fetching video details:', error);
         return null;
     }
+    gapi.client.youtube.videos.list({
+      "part": [
+        "snippet,contentDetails"
+      ],
+      "id": videoId
+    })
+        .then(function(response) {
+           console.log(response)
+           })
+              },
+              function(err) { console.error("Execute error", err); });
 }
 
 function updateVid(id,desc,title) {
