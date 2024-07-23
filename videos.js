@@ -1,5 +1,5 @@
 // Replace 'YOUR_API_KEY' and 'YOUR_VIDEO_ID' with actual values
-async function getPrivateVideoThumbnail(videoId) {
+async function getVideo(videoId,handoff) {
     gapi.client.youtube.videos.list({
       "part": [
         "snippet,contentDetails"
@@ -7,7 +7,7 @@ async function getPrivateVideoThumbnail(videoId) {
       "id": videoId
     })
         .then(function(response) {
-           console.log(JSON.parse(response.body))
+           handoff(JSON.parse(response.body).items[0].snippet)
               },
               function(err) { console.error("Execute error", err); });
 }
