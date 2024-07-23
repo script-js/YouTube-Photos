@@ -7,7 +7,7 @@ async function getPrivateVideoThumbnail(videoId) {
       "id": videoId
     })
         .then(function(response) {
-           console.log(response)
+           console.log(JSON.parse(response.body))
               },
               function(err) { console.error("Execute error", err); });
 }
