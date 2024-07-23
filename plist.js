@@ -104,7 +104,16 @@ function addVideoToPlaylist(videoId) {
            var newint = setInterval(function() {
               if (ct == arr.length) {
                 clearInterval(newint)
-                
+                Object.keys(videos).forEach(function(k) {
+                   getVideo(videos[k],function(data) {
+                      var thumb = data.thumbnails.high;
+                      var date = JSON.parse(data.description).date;
+                      openViewer(videos[k],{
+                         date: JSON.parse(data.description).date,
+                         type: JSON.parse(data.description).type,
+                      }
+                   })
+                })
               }
            })
               },
