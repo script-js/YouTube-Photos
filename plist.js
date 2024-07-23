@@ -23,6 +23,9 @@ function getPlaylist() {
                clearInterval(int1)
               if (!playlist) {
                  createPlaylist()
+                 if (location.href.includes("gallery")) {
+                    getItems()
+                 }
               }
             }
            },100)
@@ -100,9 +103,8 @@ function addVideoToPlaylist(videoId) {
            })
            var newint = setInterval(function() {
               if (ct == arr.length) {
-                console.log(videos)
                 clearInterval(newint)
-                return videos;
+                
               }
            })
               },
