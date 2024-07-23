@@ -81,3 +81,30 @@ function addVideoToPlaylist(videoId) {
               },
               function(err) { console.error("Execute error", err); });
 }
+
+  function getItems() {
+    return gapi.client.youtube.playlistItems.list({
+      "part": [
+        "snippet,contentDetails"
+      ],
+      "maxResults": 25,
+      "playlistId": playlist
+    })
+        .then(function(response) {
+           var arr = JSON.parse(response.body).items;
+           var videos = {}
+           var ct = 0
+           arr.forEach(function(k) {
+              videos[k.id] = k.snippet.resourceId.videoId;
+              ct += 1;
+           })
+           var newint = setInterval(function() {
+              if (ct == arr.length) {
+                console.log(videos)
+                clearInterval(newint)
+                return videos;
+              }
+           })
+              },
+              function(err) { console.error("Execute error", err); });
+  }
