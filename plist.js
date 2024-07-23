@@ -82,8 +82,8 @@ function addVideoToPlaylist(videoId) {
               function(err) { console.error("Execute error", err); });
 }
 
-  function getItems() {
-    return gapi.client.youtube.playlistItems.list({
+  async function getItems() {
+    return await gapi.client.youtube.playlistItems.list({
       "part": [
         "snippet,contentDetails"
       ],
