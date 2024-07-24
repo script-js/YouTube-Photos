@@ -23,10 +23,10 @@ function getPlaylist() {
                clearInterval(int1)
               if (!playlist) {
                  createPlaylist()
-                 if (location.href.includes("gallery")) {
+              }
+               if (location.href.includes("gallery")) {
                     getItems()
                  }
-              }
             }
            },100)
       }
