@@ -120,11 +120,12 @@ function getItems() {
                       if (dateList[date]) {
                          dateList[date][dateList[date].length + 1] = newimg
                       }
-                      ct2 += 1;
+                      
                    })
                    } catch(error) {
                       console.error(error,videos[k])
                    }
+ct2 += 1;
                 })
                  var newint2 = setInterval(function() {
                    if (ct2 == Object.keys(videos).length) {
