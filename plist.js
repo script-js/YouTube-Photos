@@ -107,13 +107,14 @@ function getItems() {
                 Object.keys(videos).forEach(function(k) {
                    getVideo(videos[k],function(data) {
                       var thumb = data.thumbnails.high.url;
+                      console.log(data.thumbnails)
                       var date = JSON.parse(data.description).date;
-                      var btn = document.createElement("img")
-                      btn.onclick = function() {
+                      var newimg = document.createElement("img")
+                      newimg.onclick = function() {
                         openViewer(videos[k],JSON.parse(data.description))
                       }
-                      btn.src = thumb
-                      document.body.appendChild(btn)
+                      newimg.src = thumb
+                      document.body.appendChild(newimg)
                    })
                 })
               }
