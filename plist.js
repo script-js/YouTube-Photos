@@ -101,7 +101,7 @@ function getItems() {
               videos[k.id] = k.snippet.resourceId.videoId;
               ct += 1;
            })
-           var dateList = {};
+           var dateList = [];
            var newint = setInterval(function() {
               if (ct == arr.length) {
                 clearInterval(newint)
@@ -110,16 +110,16 @@ function getItems() {
                    console.log(videos[k])
                    await getVideo(videos[k],function(data) {
                       var thumb = data.thumbnails.default.url;
-                      var date = JSON.parse(data.description).date;
                       var newimg = document.createElement("img")
                       newimg.onclick = function() {
                         openViewer(videos[k],JSON.parse(data.description))
                       }
                       newimg.src = thumb
-                      if (dateList[date]) {
-                         dateList[date][dateList[date].length + 1] = newimg
+                      var found = dateList.find((element) => element.date == JSON.parse(data.description).date;);
+                      if (found) {
+                         found.values.push(newimg)
                       } else {
-                         dateList[date] = [newimg]
+                         dateList.push({date:date,values:[newimg]})
                       }
                 })
                    ct2 += 1
@@ -127,7 +127,8 @@ function getItems() {
                  var newint2 = setInterval(function() {
                    if (ct2 == Object.keys(videos).length) {
                       clearInterval(newint2)
-                      var sortedKeys = Object.keys(dateList).sort((a, b) => b - a);
+                      console.log(dateList)
+                      var sortedKeys = dateList.sort((a, b) => b - a);
                       var sortedJSON = {};
                       sortedKeys.forEach((key, index, array) => {
                          sortedJSON[key] = dateList[key];
