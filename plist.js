@@ -119,7 +119,7 @@ function getItems() {
                       if (found) {
                          found.values.push(newimg)
                       } else {
-                         dateList.push({date:date,values:[newimg]})
+                         dateList.push({date:JSON.parse(data.description).date,values:[newimg]})
                       }
                 })
                    ct2 += 1
