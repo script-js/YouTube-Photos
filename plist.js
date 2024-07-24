@@ -108,6 +108,7 @@ function getItems() {
                 var ct2 = 0;
                 Object.keys(videos).forEach(function(k) {
                    console.log(videos[k])
+                   try {
                    getVideo(videos[k],function(data) {
                       var thumb = data.thumbnails.default.url;
                       var date = JSON.parse(data.description).date;
@@ -121,6 +122,9 @@ function getItems() {
                       }
                       ct2 += 1;
                    })
+                   } catch(error) {
+                      console.error(error,videos[k])
+                   }
                 })
                  var newint2 = setInterval(function() {
                    if (ct2 == Object.keys(videos).length) {
