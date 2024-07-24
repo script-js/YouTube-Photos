@@ -131,7 +131,8 @@ console.log(dateList)
                       Object.keys(dateList).forEach(function(k) {
                          let dateObj = new Date(k * 1000);
                          let utcString = dateObj.toUTCString();
-                         var elem = document.createElement("div").innerHTML = "<h3>" + utcString + "</h3>"
+                         var elem = document.createElement("div")
+                            elem.innerHTML = "<h3>" + utcString + "</h3>"
                          dateList[k].forEach(function(k) {
                             elem.appendChild(k)
                          })
