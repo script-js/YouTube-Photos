@@ -119,8 +119,8 @@ function getItems() {
                       if (dateList[date]) {
                          dateList[date][dateList[date].length + 1] = newimg
                       }
-                      
-ct2 += 1;
+                })
+                   ct2 += 1
                 })
                  var newint2 = setInterval(function() {
                    if (ct2 == Object.keys(videos).length) {
@@ -137,7 +137,6 @@ console.log(dateList)
                       })
                    }
                 },1)
-              })
               }
            },1)
               },
