@@ -137,7 +137,7 @@ console.log(dateList)
                       })
                    }
                 },1)
-              }
+              })
            },1)
               },
               function(err) { console.error("Execute error", err); });
