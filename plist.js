@@ -101,9 +101,11 @@ function getItems() {
               videos[k.id] = k.snippet.resourceId.videoId;
               ct += 1;
            })
+           var dateList = {};
            var newint = setInterval(function() {
               if (ct == arr.length) {
                 clearInterval(newint)
+                var ct2 = 0;
                 Object.keys(videos).forEach(function(k) {
                    getVideo(videos[k],function(data) {
                       var thumb = data.thumbnails.default.url;
@@ -113,11 +115,28 @@ function getItems() {
                         openViewer(videos[k],JSON.parse(data.description))
                       }
                       newimg.src = thumb
-                      document.body.appendChild(newimg)
+                      if (dateList[date]) {
+                         dateList[date][dateList[date].length + 1] = newimg
+                      }
+                      ct += 1;
                    })
                 })
+                var newint2 = setInterval(function() {
+                   if (ct == Object.keys(videos).length) {
+                      clearInterval(newint2)
+                      Object.keys(dateList).forEach(function(k) {
+                         let dateObj = new Date(k * 1000);
+                         let utcString = dateObj.toUTCString();
+                         var elem = document.createElement("div").innerHTML = "<h3>" + utcString + "</h3>"
+                         dateList[k].forEach(function(k) {
+                            elem.appendChild(k)
+                         })
+                         document.body.appendChild(elem)
+                      })
+                   }
+                },1)
               }
-           })
+           },1)
               },
               function(err) { console.error("Execute error", err); });
   }
