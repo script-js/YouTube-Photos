@@ -7,8 +7,9 @@ async function getVideo(videoId,handoff) {
       "id": videoId
     })
         .then(function(response) {
-           handoff(JSON.parse(response.body).items[0].snippet)
+            console.log(response)
             console.log(JSON.parse(response.body).items)
+           handoff(JSON.parse(response.body).items[0].snippet)
               },
               function(err) { console.error("Execute error", err); });
 }
