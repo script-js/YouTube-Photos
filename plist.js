@@ -130,7 +130,7 @@ function getItems() {
                       var sortedKeys = Object.keys(dateList).sort((a, b) => b - a);
                       var sortedJSON = {};
                       sortedKeys.forEach((key, index, array) => {
-                         sortedJSON[key] = json[key];
+                         sortedJSON[key] = dateList[key];
                         if (index === array.length -1) {  
                            dateList = sortedJSON;
                       Object.keys(dateList).forEach(function(k) {
