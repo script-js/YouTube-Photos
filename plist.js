@@ -127,7 +127,7 @@ function getItems() {
                  var newint2 = setInterval(function() {
                    if (ct2 == Object.keys(videos).length) {
                       clearInterval(newint2)
-                      dateList = dateList.sort(function(a, b){return a - b}).reverse();
+                      dateList = Object.keys(dateList).sort(function(a, b){return a - b}).reverse();
                       Object.keys(dateList).forEach(function(k) {
                          let dateObj = new Date(k * 1000);
                          let utcString = dateObj.toUTCString();
