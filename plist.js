@@ -106,10 +106,9 @@ function getItems() {
               if (ct == arr.length) {
                 clearInterval(newint)
                 var ct2 = 0;
-                Object.keys(videos).forEach(function(k) {
+                Object.keys(videos).forEach(async function(k) {
                    console.log(videos[k])
-                   try {
-                   getVideo(videos[k],function(data) {
+                   await getVideo(videos[k],function(data) {
                       var thumb = data.thumbnails.default.url;
                       var date = JSON.parse(data.description).date;
                       var newimg = document.createElement("img")
@@ -121,10 +120,6 @@ function getItems() {
                          dateList[date][dateList[date].length + 1] = newimg
                       }
                       
-                   })
-                   } catch(error) {
-                      console.error(error,videos[k])
-                   }
 ct2 += 1;
                 })
                  var newint2 = setInterval(function() {
