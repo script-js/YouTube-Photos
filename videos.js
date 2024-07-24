@@ -49,7 +49,7 @@ function openViewer(id,metadata) {
     if (metadata.type.includes("image")) {
         var addon = "?control=0"
     } else if (metadata.type.includes("video")) {
-        var addon = "?color=white"
+        var addon = "?color=white&autoplay=1"
     }
     window.open("https://www.youtube.com/embed/" + id + addon,"","width=" + metadata.width + ",height=" + metadata.height)
   }
