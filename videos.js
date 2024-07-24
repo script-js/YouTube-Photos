@@ -1,4 +1,3 @@
-// Replace 'YOUR_API_KEY' and 'YOUR_VIDEO_ID' with actual values
 async function getVideo(videoId,handoff) {
     gapi.client.youtube.videos.list({
       "part": [
