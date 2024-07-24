@@ -106,9 +106,8 @@ function getItems() {
                 clearInterval(newint)
                 Object.keys(videos).forEach(function(k) {
                    getVideo(videos[k],function(data) {
-                      var thumb = data.thumbnails.high;
+                      var thumb = data.thumbnails.high.url;
                       var date = JSON.parse(data.description).date;
-                      console.log(thumb)
                       var btn = document.createElement("img")
                       btn.onclick = function() {
                         openViewer(videos[k],JSON.parse(data.description))
