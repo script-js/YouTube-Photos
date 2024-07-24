@@ -127,7 +127,12 @@ function getItems() {
                  var newint2 = setInterval(function() {
                    if (ct2 == Object.keys(videos).length) {
                       clearInterval(newint2)
-                      dateList = sortJSON(dateList)
+                      var sortedKeys = Object.keys(dateList).sort((a, b) => b - a);
+                      var sortedJSON = {};
+                      sortedKeys.forEach((key, index, array) => {
+                         sortedJSON[key] = json[key];
+                        if (index === array.length -1) {  
+                           dateList = sortedJSON;
                       Object.keys(dateList).forEach(function(k) {
                          let dateObj = new Date(k * 1000);
                          let utcString = dateObj.toUTCString();
@@ -138,6 +143,8 @@ function getItems() {
                          })
                          document.body.appendChild(elem)
                       })
+                           }
+                      });
                    }
                 },1)
               }
@@ -145,12 +152,3 @@ function getItems() {
               },
               function(err) { console.error("Execute error", err); });
   }
-
-function sortJSON(json) {
-    const sortedKeys = Object.keys(json).sort((a, b) => b - a);
-    const sortedJSON = {};
-    sortedKeys.forEach(key => {
-        sortedJSON[key] = json[key];
-    });
-    return sortedJSON;
-}
