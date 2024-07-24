@@ -108,10 +108,12 @@ function getItems() {
                    getVideo(videos[k],function(data) {
                       var thumb = data.thumbnails.high;
                       var date = JSON.parse(data.description).date;
-                      openViewer(videos[k],{
-                         date: JSON.parse(data.description).date,
-                         type: JSON.parse(data.description).type,
-                      })
+                      var btn = document.createElement("img")
+                      btn.onclick = function() {
+                        openViewer(videos[k],JSON.parse(data.description))
+                      }
+                      btn.src = thumb
+                      document.body.appendChild(btn)
                    })
                 })
               }
