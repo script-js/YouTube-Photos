@@ -127,7 +127,7 @@ function getItems() {
                  var newint2 = setInterval(function() {
                    if (ct2 == Object.keys(videos).length) {
                       clearInterval(newint2)
-                      dateList = Object.keys(dateList).sort(function(a, b){return a - b}).reverse();
+                      dateList = sortJSON(dateList)
                       Object.keys(dateList).forEach(function(k) {
                          let dateObj = new Date(k * 1000);
                          let utcString = dateObj.toUTCString();
@@ -145,3 +145,12 @@ function getItems() {
               },
               function(err) { console.error("Execute error", err); });
   }
+
+function sortJSON(json) {
+    const sortedKeys = Object.keys(json).sort((a, b) => b - a);
+    const sortedJSON = {};
+    sortedKeys.forEach(key => {
+        sortedJSON[key] = json[key];
+    });
+    return sortedJSON;
+}
