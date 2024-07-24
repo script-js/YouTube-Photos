@@ -118,6 +118,8 @@ function getItems() {
                       newimg.src = thumb
                       if (dateList[date]) {
                          dateList[date][dateList[date].length + 1] = newimg
+                      } else {
+                         dateList[date] = [newimg]
                       }
                 })
                    ct2 += 1
