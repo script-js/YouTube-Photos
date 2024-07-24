@@ -119,10 +119,23 @@ function getItems() {
                       if (dateList[date]) {
                          dateList[date][dateList[date].length + 1] = newimg
                       }
-                      ct += 1;
+                      ct2 += 1;
                    })
                 })
-                console.log(dateList)
+                 var newint2 = setInterval(function() {
+                   if (ct2 == Object.keys(videos).length) {
+                      clearInterval(newint2)
+                      Object.keys(dateList).forEach(function(k) {
+                         let dateObj = new Date(k * 1000);
+                         let utcString = dateObj.toUTCString();
+                         var elem = document.createElement("div").innerHTML = "<h3>" + utcString + "</h3>"
+                         dateList[k].forEach(function(k) {
+                            elem.appendChild(k)
+                         })
+                         document.body.appendChild(elem)
+                      })
+                   }
+                },1)
               }
            },1)
               },
