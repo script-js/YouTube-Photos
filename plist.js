@@ -115,7 +115,7 @@ function getItems() {
                         openViewer(videos[k],JSON.parse(data.description))
                       }
                       newimg.src = thumb
-                      var found = dateList.find((element) => element.date == JSON.parse(data.description).date;);
+                      var found = dateList.find((element) => element.date == JSON.parse(data.description).date);
                       if (found) {
                          found.values.push(newimg)
                       } else {
