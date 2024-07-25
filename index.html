@@ -156,8 +156,6 @@ function tabChange(tab) {
       <script>
         function startup() {
           noblock.style.display = "block"
-          window.uploadVideo = new UploadVideo();
-          uploadVideo.ready(gapi.client.getToken().access_token);
           getPlaylist()
         }
         document.getElementsByName("view")[0].src = "gallery"
