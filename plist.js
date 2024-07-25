@@ -129,8 +129,8 @@ function getItems() {
                       clearInterval(newint2)
                       console.log(dateList)
                       var sortedKeys = dateList.sort((a, b) => b - a);
-                      Object.keys(sortedKeys).forEach(function(k2) 
-                         var k = sortedKeys[k2]
+                      Object.keys(sortedKeys).forEach(function(k2) {
+                         var k = sortedKeys[k2];
                          console.log(k)
                          let dateObj = new Date(k.date * 1000);
                          let utcString = dateObj.toUTCString();
