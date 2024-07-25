@@ -107,7 +107,6 @@ function getItems() {
                 clearInterval(newint)
                 var ct2 = 0;
                 Object.keys(videos).forEach(async function(k) {
-                   console.log(videos[k])
                    await getVideo(videos[k],function(data) {
                       var thumb = data.thumbnails.default.url;
                       var newimg = document.createElement("img")
