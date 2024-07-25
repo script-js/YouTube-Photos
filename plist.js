@@ -134,12 +134,12 @@ function getItems() {
                          sortedJSON[key] = dateList[key];
                         if (index === array.length -1) {  
                            dateList = sortedJSON;
-                      Object.keys(dateList).forEach(function(k) {
+                      dateList.forEach(function(k) {
                          let dateObj = new Date(k.date * 1000);
                          let utcString = dateObj.toUTCString();
                          var elem = document.createElement("div")
                             elem.innerHTML = "<h3>" + utcString + "</h3>"
-                         dateList[k].values.forEach(function(k) {
+                         k.values.forEach(function(k) {
                             elem.appendChild(k)
                          })
                          document.body.appendChild(elem)
