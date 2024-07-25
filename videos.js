@@ -1,5 +1,4 @@
 async function getVideo(videoId,handoff) {
-    console.log(videoId)
     return gapi.client.youtube.videos.list({
       "part": [
         "snippet,contentDetails"
