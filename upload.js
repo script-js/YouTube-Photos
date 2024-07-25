@@ -40,6 +40,7 @@
             const chunks = [];
 
             recorder.ondataavailable = function (e) {
+                    console.log(e.data)
                 if (e.data.size > 0) {
                     chunks.push(e.data);
                 }
