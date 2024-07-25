@@ -128,7 +128,7 @@ function getItems() {
                    if (ct2 == Object.keys(videos).length) {
                       clearInterval(newint2)
                       console.log(dateList)
-                      var sortedKeys = dateList.sort((a, b) => (a.date > b.date ? 1 : -1));
+                      var sortedKeys = dateList.sort((a, b) => (a.date > b.date ? 1 : -1)).reverse();
                       Object.keys(sortedKeys).forEach(function(k2) {
                          var k = sortedKeys[k2];
                          k.values.forEach(function(k) {
