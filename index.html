@@ -105,12 +105,13 @@ textarea {
       </div>
 
       <div>
-        <input input type="file" hidden id="file" class="button" accept="video/*,image/*">
+        <input input type="file" hidden id="file" class="button" multiple accept="video/*,image/*">
       <div class="during-upload">
-        <p><span id="percent-transferred"></span>% done (<span id="bytes-transferred"></span>/<span id="total-bytes"></span> bytes)</p>
+        <p><span id="donec"></span><span id="totalc"></span></p>
         <progress id="upload-progress" max="1" value="0"></progress>
       </div>
       <h3 id="uploadText"></h3>
+      <ol id="uploadUL"></ol>
       </div>
       </div>
 
