@@ -5,7 +5,7 @@
                                     function () {
             const files = this.files;
             filesLength = files.length;
-            uploadProg
+            uploadProg()
             for (let i = 0; i < files.length; i++) {
                 const file = files[i];
                 var vMetadata = {
