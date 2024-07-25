@@ -1,12 +1,11 @@
         const imageInput = document.getElementById('file');
-
-        let images = [];
-        let currentImageIndex = 0;
+        var filesLength = 0;
 
         imageInput.addEventListener('change',
                                     function () {
-            images = [];
             const files = this.files;
+            filesLength = files.length;
+            uploadProg
             for (let i = 0; i < files.length; i++) {
                 const file = files[i];
                 var vMetadata = {
@@ -16,7 +15,6 @@
                 if (file.type.match('image.*')) {
                     const img = new Image();
                     img.src = URL.createObjectURL(file);
-                    images.push(img);
                     img.onload = function () {
                       createVid(img,{
                         width: this.width,
@@ -85,6 +83,7 @@ function uploadProg(off) {
 }
 
 function showLink(obj,meta,title) {
+  filesLength -= 1;
   var url = URL.createObjectURL(obj)
   var link = document.createElement("li")
   link.innerHTML = `
@@ -93,7 +92,16 @@ function showLink(obj,meta,title) {
   `
   var newbtn = document.createElement("button")
   newbtn.onclick = function() {
-    updateVid(this.parentElement.querySelector("input").value,JSON.stringify(meta),title)
+    var vid = this.parentElement.querySelector("input").value;
+    addVideoToPlaylist(vid)
+    updateVid(vid,JSON.stringify(meta),title)
   }
   newbtn.innerHTML = "Add to library"
+  link.appendChild(newbtn)
+  uploadUL.appendChild(link)
+  if (filesLength == 0) {
+    uploadProg(true)
+    modal.style.display = "block";
+    uploadText.innerHTML = "<u>Done</u>"
+  }
 }
