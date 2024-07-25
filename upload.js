@@ -57,10 +57,6 @@
                return;
             },1000)
             const drawFrame = () => {
-                    if (currentImageIndex >= images.length) {
-                      recorder.stop();
-                      return;
-                    }
                     ctx.drawImage(image, 0, 0,
                                   canvas.width, canvas.height);
             };
