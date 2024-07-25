@@ -55,5 +55,9 @@ function openViewer(id,metadata) {
         var addon = "?color=white&autoplay=1"
     }
     console.log(metadata)
-    window.open("https://www.youtube.com/embed/" + id + addon, "","width=" + metadata.width + ", height=" + metadata.height + ", location=0, toolbar=0, menubar=0")
+    if (metadata.width && metadata.height) {
+      window.open("https://www.youtube.com/embed/" + id + addon, "","width=" + metadata.width + ", height=" + metadata.height + ", location=0, toolbar=0, menubar=0")
+    } else {
+      window.open("https://www.youtube.com/embed/" + id + addon, "","location=0, toolbar=0, menubar=0")
+    }
   }
