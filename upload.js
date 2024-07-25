@@ -22,7 +22,7 @@
                     vMetadata.width = this.width
                     vMetadata.height = this.height
                 } else if (file.type.match('video.*')) {
-                    showLink(k,vMetadata,document.getElementById("file").files.item(0).name)
+                    showLink(file,vMetadata,document.getElementById("file").files.item(0).name)
                 }
             }
         });
