@@ -138,8 +138,7 @@ function getItems() {
                             elem.appendChild(k)
                             if (index === array.length -1) {document.body.appendChild(elem)}
                          })
-                           }
-                      });
+                           })
                    }
                 },1)
               }
