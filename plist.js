@@ -131,14 +131,8 @@ function getItems() {
                       var sortedKeys = dateList.sort((a, b) => b - a);
                       Object.keys(sortedKeys).forEach(function(k2) {
                          var k = sortedKeys[k2];
-                         console.log(k)
-                         let dateObj = new Date(k.date * 1000);
-                         let utcString = dateObj.toUTCString();
-                         var elem = document.createElement("div")
-                            elem.innerHTML = "<h3>" + utcString + "</h3>"
-                         k.values.forEach(function(k,index,array) {
-                            elem.appendChild(k)
-                            if (index === array.length -1) {document.body.appendChild(elem)}
+                         k.values.forEach(function(k) {
+                            document.body.appendChild(k)
                          })
                            })
                    }
