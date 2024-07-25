@@ -131,6 +131,7 @@ function getItems() {
                       var sortedKeys = dateList.sort((a, b) => (a.date > b.date ? 1 : -1)).reverse();
                       Object.keys(sortedKeys).forEach(function(k2) {
                          var k = sortedKeys[k2];
+                         loadText.remove()
                          k.values.forEach(function(k) {
                             document.body.appendChild(k)
                          })
