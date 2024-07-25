@@ -16,24 +16,22 @@
                     const img = new Image();
                     img.src = URL.createObjectURL(file);
                     img.onload = function () {
-                      createVid(img,{
-                        width: this.width,
-                        height: this.height
-                      },vMetadata,document.getElementById("file").files.item(0).name)
+                      createVid(img,vMetadata,document.getElementById("file").files.item(0).name)
                     };
                     uploadText.innerHTML = "Converting..."
-                    vMetadata.imageSize = `${this.width} x ${this.height}`
+                    vMetadata.width = this.width
+                    vMetadata.height = this.height
                 } else if (file.type.match('video.*')) {
                     showLink(k,vMetadata,document.getElementById("file").files.item(0).name)
                 }
             }
         });
 
-        function createVid(image,dimensions,meta,title) {
+        function createVid(image,meta,title) {
           var canvas = document.createElement("canvas");
           var ctx = canvas.getContext('2d');
-          canvas.width = dimensions.width
-          canvas.height = dimensions.height
+          canvas.width = meta.width
+          canvas.height = meta.height
 
             const frameRate = 10; // Frames per second
             const recorder = new MediaRecorder(canvas.
