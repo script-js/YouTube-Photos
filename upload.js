@@ -39,7 +39,7 @@
               { mimeType: 'video/webm' });
             const chunks = [];
 
-            recorder.ondataavailable = function (e) { else 
+            recorder.ondataavailable = function (e) {
                 if (e.data.size > 0) {
                     chunks.push(e.data);
                 } else {
