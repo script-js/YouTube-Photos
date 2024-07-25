@@ -40,11 +40,7 @@
             const chunks = [];
 
             recorder.ondataavailable = function (e) {
-                if (e.data.size > 0) {
-                    chunks.push(e.data);
-                } else {
-                  setTimeout(function() {createVid(image,meta,title)},500)
-                }
+              chunks.push(e.data);
             };
 
             recorder.onstop = function () {
