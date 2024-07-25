@@ -130,6 +130,7 @@ function getItems() {
                       console.log(dateList)
                       var sortedKeys = dateList.sort((a, b) => b - a);
                       Object.keys(dateList).forEach(function(k) {
+                         console.log(k)
                          let dateObj = new Date(k.date * 1000);
                          let utcString = dateObj.toUTCString();
                          var elem = document.createElement("div")
