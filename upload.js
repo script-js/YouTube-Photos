@@ -85,7 +85,7 @@ function uploadProg(off) {
 }
 
 function showLink(obj,meta,title) {
-  var url = URL.getObjectURL(obj)
+  var url = URL.createObjectURL(obj)
   var link = document.createElement("li")
   link.innerHTML = `
     <p><a href="${url}">Download</a></p>
