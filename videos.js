@@ -7,7 +7,6 @@ async function getVideo(videoId,handoff) {
       "id": videoId
     })
         .then(function(response) {
-            console.log(response)
             if (JSON.parse(response.body).items[0]) {
            handoff(JSON.parse(response.body).items[0].snippet)
             }
