@@ -39,21 +39,21 @@
               { mimeType: 'video/webm' });
             const chunks = [];
 
-            recorder.ondataavailable = function (e) {
-                    console.log(e.data)
+            recorder.ondataavailable = function (e) { else 
                 if (e.data.size > 0) {
                     chunks.push(e.data);
+                } else {
+                  
                 }
             };
 
             recorder.onstop = function () {
-                    console.log(chunks)
               if (chunks[0].size > 217) {
                 var blob = new Blob(chunks,
                                       { type: 'video/webm' })
                 showLink(blob,meta,title)
               } else {
-                setTimeout(function() {createVid(uploadFile)},500)
+                setTimeout(function() {createVid(image,meta,title)},500)
               }
             };
                 setTimeout(function() {
