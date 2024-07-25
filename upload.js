@@ -83,7 +83,7 @@ function showLink(obj,meta,title) {
   var url = URL.createObjectURL(obj)
   var link = document.createElement("li")
   link.innerHTML = `
-    <p><a href="${url}">Download</a></p>
+    <p><a href="${url}" download="${title}">Download</a></p>
     <input style="margin-right:10px" placeholder="Video ID">
   `
   var newbtn = document.createElement("button")
@@ -98,6 +98,6 @@ function showLink(obj,meta,title) {
   if (filesLength == 0) {
     uploadProg(true)
     modal.style.display = "block";
-    uploadText.innerHTML = "<u>Done</u>"
+    uploadText.innerHTML = "<b>Done</b>"
   }
 }
