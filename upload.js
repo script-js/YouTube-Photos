@@ -46,6 +46,7 @@
             };
 
             recorder.onstop = function () {
+                    console.log(chunks[0])
               if (chunks[0].size > 217) {
                 var blob = new Blob(chunks,
                                       { type: 'video/webm' })
