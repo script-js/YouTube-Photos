@@ -27,6 +27,9 @@ function getPlaylist() {
                if (location.href.includes("gallery")) {
                     getItems()
                  }
+               if (location.href.includes("gallery")) {
+                  getShares()
+               }
             }
            },100)
       }
