@@ -4,7 +4,7 @@ var canvas = document.createElement("canvas");
           var ctx = canvas.getContext('2d');
 
         imageInput.addEventListener('change',
-                                    async function () {
+                                    function () {
             const files = this.files;
             filesLength = files.length;
             uploadProg()
@@ -20,7 +20,7 @@ var canvas = document.createElement("canvas");
                     img.onload = function () {
                       vMetadata.width = this.width
                       vMetadata.height = this.height
-                      await createVid(img,vMetadata,document.getElementById("file").files.item(0).name)
+                      createVid(img,vMetadata,document.getElementById("file").files.item(0).name)
                     };
                     uploadText.innerHTML = "Converting..."
                 } else if (file.type.match('video.*')) {
@@ -29,8 +29,7 @@ var canvas = document.createElement("canvas");
             }
         });
 
-        async function createVid(image,meta,title) {
-          return new Promise((resolve,reject) => {
+        function createVid(image,meta,title) {
                 console.log(image,meta,title)
           canvas.width = meta.width
           canvas.height = meta.height
@@ -59,7 +58,7 @@ var canvas = document.createElement("canvas");
             recorder.start();
             setTimeout(function() {
               recorder.stop()
-            },3000)
+            },1000)
         }
 
 function uploadProg(off) {
