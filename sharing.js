@@ -40,6 +40,7 @@ function getShares() {
                 elem.innerHTML `
                   <img src="${JSON.parse(response.body).items[0].snippet.thumbnails.default.url}"><a style="padding-left:1.5em" href="https://ytphotos.pages.dev/share?v=${k.snippet.resourceId.videoId}">${JSON.parse(response.body).items[0].snippet.title}</a>
                 `
+                console.log(elem.innerHTML)
                 elem.style = "margin-bottom: 20px;display:flex;align-items:center;"
                 document.body.appendChild(elem)
               }
