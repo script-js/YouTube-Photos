@@ -32,10 +32,12 @@
 
 function createVid(img,meta,title) {
         var frame1 = document.createElement("iframe")
+        frame1.style = "display:none"
         frame1.onload = function() {
-          this.contentWindow.createVid(img,meta,title)
+          this.contentWindow.createVid(img,meta,title,frame1)
         }
         frame1.src = "createvid"
+        document.documentElement.appendChild(frame1)
 }
 
 function uploadProg(off) {
