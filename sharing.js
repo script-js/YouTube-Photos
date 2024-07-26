@@ -36,8 +36,13 @@ function getShares() {
             if (JSON.parse(response.body).items[0]) {
               if (JSON.parse(response.body).items[0].status.privacyStatus == "unlisted") {
                 var elem = document.createElement("div")
+                if (JSON.parse(JSON.parse(response.body).items[0].snippet.description).type.includes("image")) {
+                  var addon = "?control=0&rel=0"
+                } else if (JSON.parse(JSON.parse(response.body).items[0].snippet.description).type.includes("video")) {
+                  var addon = "?color=white&autoplay=1&rel=0"
+                }
                 elem.innerHTML = `
-                  <img src="${JSON.parse(response.body).items[0].snippet.thumbnails.default.url}"><a style="padding-left:1.5em" href="https://ytphotos.pages.dev/share?v=${k.snippet.resourceId.videoId}">${JSON.parse(response.body).items[0].snippet.title}</a>
+                  <img src="${JSON.parse(response.body).items[0].snippet.thumbnails.default.url}"><a style="padding-left:1.5em" target="_blank" href="https://www.youtube.com/embed/${k.snippet.resourceId.videoId + addon}">${JSON.parse(response.body).items[0].snippet.title}</a>
                 `
                 elem.style = "margin-bottom: 20px;display:flex;align-items:center;"
                 document.body.appendChild(elem)
