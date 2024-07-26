@@ -1,8 +1,9 @@
 <!DOCTYPE HTML>
 <html>
   <head>
-     <body><canvas id="canvas"></canvas></body>
+     <body></body>
     <script>
+      var canvas = document.createElement("canvas")
       var ctx = canvas.getContext("2d")
         function createVid(image,meta,title,frame) {
           canvas.width = meta.width
@@ -25,7 +26,7 @@
                 window.top.showLink(blob,meta,title)
                 frame.remove()
               } else {
-                createVid()
+                createVid(image,meta,title,frame)
               }
             };
             ctx.drawImage(image, 0, 0, canvas.width, canvas.height);
