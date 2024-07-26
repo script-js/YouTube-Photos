@@ -49,7 +49,6 @@ var canvas = document.createElement("canvas");
                 var blob = new Blob(chunks,
                                       { type: 'video/webm' })
                 showLink(blob,meta,title)
-                resolve()
               } else {
                 await createVid(image,meta,title)
               }
