@@ -134,7 +134,7 @@ function createVid2(image,meta,title) {
                return;
             },1000)
             const drawFrame = () => {
-                    ctx.drawImage(images[currentImageIndex], 0, 0,
+                    ctx.drawImage(image,0, 0,
                                   canvas.width, canvas.height);
             };
 
