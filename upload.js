@@ -99,6 +99,10 @@ function showLink(obj,meta,title) {
 }
 
 function createVid2(image,meta,title) {
+        var canvas = document.createElement("canvas");
+          var ctx = canvas.getContext('2d');
+          canvas.width = meta.width
+          canvas.height = meta.height
         var images = file.files
             if (images.length === 0) {
                 console.log('Please select some images first.');
