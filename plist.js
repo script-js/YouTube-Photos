@@ -139,10 +139,11 @@ function getItems() {
                       Object.keys(sortedKeys).forEach(function(k2) {
                          var k = sortedKeys[k2];
                          var date = k.readableDate.split("/")
-                         console.log(date)
                          var dateString = weekdays[date[3]] + ", " + months[date[0]] + " " + date[1] + ", " + date[2]
-                         var dateDiv = document.createElement("div").innerHTML = "<h3>" + dateString + "</h3>"
+                         var dateDiv = document.createElement("div")
+                         dateDiv.innerHTML = "<h3>" + dateString + "</h3>"
                          k.values.forEach(function(k,index) {
+                            console.log(k)
                             dateDiv.appendChild(k)
                             if (index == (k.values.length - 1)) {document.body.appendChild(dateDiv)}
                          })
