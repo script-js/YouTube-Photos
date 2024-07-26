@@ -9,7 +9,6 @@ function share(id,meta) {
         "status": {
           "privacyStatus": "unlisted"
         }
-      }
     })
     return "https://ytphotos.pages.dev/share?v=" + id
 }
