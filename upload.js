@@ -33,6 +33,7 @@ var canvas = document.createElement("canvas");
         });
 
         function createVid() {
+          ctx.clearRect(0, 0, canvas.width, canvas.height)
           var meta = images[imageIndex][1];
           canvas.width = meta.width
           canvas.height = meta.height
