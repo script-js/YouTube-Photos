@@ -142,10 +142,10 @@ function getItems() {
                          var dateString = weekdays[date[3]] + ", " + months[date[0]] + " " + date[1] + ", " + date[2]
                          var dateDiv = document.createElement("div")
                          dateDiv.innerHTML = "<h3>" + dateString + "</h3>"
-                         k.values.forEach(function(k,index) {
+                         k.values.forEach(function(k,index,array) {
                             console.log(k)
                             dateDiv.appendChild(k)
-                            if (index == (k.values.length - 1)) {document.body.appendChild(dateDiv)}
+                            if (index == (array.length - 1)) {document.body.appendChild(dateDiv)}
                          })
                            })
                    }
