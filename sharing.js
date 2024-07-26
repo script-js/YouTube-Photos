@@ -16,7 +16,7 @@ function share(id,meta) {
 function getShares() {
       gapi.client.youtube.playlistItems.list({
       "part": [
-        "snippet,contentDetails,status"
+        "snippet,contentDetails"
       ],
       "maxResults": 25,
       "playlistId": playlist
@@ -28,7 +28,7 @@ function getShares() {
            arr.forEach(function(k) {
                 gapi.client.youtube.videos.list({
                   "part": [
-                    "snippet,contentDetails"
+                    "snippet,contentDetails,status"
                   ],
                   "id": k.snippet.resourceId.videoId
                 })
