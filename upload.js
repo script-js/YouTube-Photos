@@ -9,8 +9,10 @@ var canvas = document.createElement("canvas");
         imageInput.addEventListener('change',
                                     function () {
                                             images = []
-                                            imageindex = 0
+                                            imageIndex = 0
                                             imageDone = true
+                                            uploadUL.style.display = "none"
+                                            uploadUL.innerHTML = ""
             const files = this.files;
             filesLength = files.length;
             uploadProg()
@@ -109,6 +111,7 @@ function showLink(obj,meta,title) {
   if (filesLength == 0) {
     uploadProg(true)
     modal.style.display = "block";
+    uploadUL.style.display = "block"
     uploadText.innerHTML = "<b>Done</b>"
   }
 }
