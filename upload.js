@@ -19,8 +19,8 @@
                       createVid(img,vMetadata,document.getElementById("file").files.item(0).name)
                     };
                     uploadText.innerHTML = "Converting..."
-                    vMetadata.width = this.width
-                    vMetadata.height = this.height
+                    vMetadata.width = img.width
+                    vMetadata.height = img.height
                 } else if (file.type.match('video.*')) {
                     showLink(file,vMetadata,document.getElementById("file").files.item(0).name)
                 }
