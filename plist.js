@@ -117,11 +117,13 @@ function getItems() {
                         openViewer(videos[k],JSON.parse(data.description))
                       }
                       newimg.src = thumb
-                      var found = dateList.find((element) => element.date == JSON.parse(data.description).date);
+                      var dateObj = new Date(JSON.parse(data.description).date)
+                      var date = dateObj.getMonth() + "/" + dateObj.getDate() + "/" dateObj.getFullYear() + "/" + dateObj.getDay()
+                      var found = dateList.find((element) => element.date == date);
                       if (found) {
                          found.values.push(newimg)
                       } else {
-                         dateList.push({date:JSON.parse(data.description).date,values:[newimg]})
+                         dateList.push({date:JSON.parse(data.description).date,readableDate: date,values:[newimg]})
                       }
                 })
                    ct2 += 1
@@ -130,12 +132,19 @@ function getItems() {
                    if (ct2 == Object.keys(videos).length) {
                       clearInterval(newint2)
                       console.log(dateList)
+                      var months = ["January","February","March","April","May","June","July","August","September","October","November","December"]
+                      var weekdays = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"]
                       var sortedKeys = dateList.sort((a, b) => (a.date > b.date ? 1 : -1)).reverse();
                       loadText.remove()
                       Object.keys(sortedKeys).forEach(function(k2) {
                          var k = sortedKeys[k2];
-                         k.values.forEach(function(k) {
-                            document.body.appendChild(k)
+                         var date = k.readableDate.split("/")
+                         console.log(date)
+                         var dateString = weekdays[date[3]] + ", " + months[date[0]] + " " + date[1] + ", " + date[2]
+                         var dateDiv = document.createElement("div").innerHTML = "<h3>" + dateString + "</h3>"
+                         k.values.forEach(function(k,index) {
+                            dateDiv.appendChild(k)
+                            if (index == (k.values.length - 1)) {document.body.appendChild(dateDiv)}
                          })
                            })
                    }
