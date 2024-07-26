@@ -133,7 +133,7 @@ function createVid2(image,meta,title) {
             setTimeout(function() {
               recorder.stop()
                return;
-            },1000)
+            },10000)
             const drawFrame = () => {
                     ctx.drawImage(image,0, 0,
                                   canvas.width, canvas.height);
