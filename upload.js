@@ -61,7 +61,6 @@
             recorder.start();
             setTimeout(function() {
               recorder.stop()
-               return;
             },1000)
         }
 
