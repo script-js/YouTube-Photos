@@ -16,11 +16,12 @@
                     const img = new Image();
                     img.src = URL.createObjectURL(file);
                     img.onload = function () {
+                      vMetadata.width = this.width
+                      vMetadata.height = this.height
                       createVid(img,vMetadata,document.getElementById("file").files.item(0).name)
                     };
                     uploadText.innerHTML = "Converting..."
-                    vMetadata.width = img.width
-                    vMetadata.height = img.height
+                    t
                 } else if (file.type.match('video.*')) {
                     showLink(file,vMetadata,document.getElementById("file").files.item(0).name)
                 }
