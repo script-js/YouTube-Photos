@@ -1,10 +1,13 @@
         const imageInput = document.getElementById('file');
         var filesLength = 0;
+        var imageIndex = 0;
+        var images = [];
 var canvas = document.createElement("canvas");
           var ctx = canvas.getContext('2d');
 
         imageInput.addEventListener('change',
                                     function () {
+                                            images = []
             const files = this.files;
             filesLength = files.length;
             uploadProg()
@@ -20,7 +23,7 @@ var canvas = document.createElement("canvas");
                     img.onload = function () {
                       vMetadata.width = this.width
                       vMetadata.height = this.height
-                      createVid(img,vMetadata,document.getElementById("file").files.item(0).name)
+                      images.push([img,vMetadata,document.getElementById("file").files.item(0).name])
                     };
                     uploadText.innerHTML = "Converting..."
                 } else if (file.type.match('video.*')) {
@@ -29,8 +32,8 @@ var canvas = document.createElement("canvas");
             }
         });
 
-        function createVid(image,meta,title) {
-                console.log(image,meta,title)
+        function createVid() {
+          var meta = images[imageIndex][1];
           canvas.width = meta.width
           canvas.height = meta.height
 
@@ -44,16 +47,20 @@ var canvas = document.createElement("canvas");
               chunks.push(e.data);
             };
 
-            recorder.onstop = async function () {
+            recorder.onstop = function () {
               if (chunks[0].size > 217) {
                 var blob = new Blob(chunks,
                                       { type: 'video/webm' })
-                showLink(blob,meta,title)
+                showLink(blob,meta,images[imageIndex][2])
+                if (imageIndex < (images.length + 1)) {
+                  createVid()
+                }
+                imageIndex += 1;
               } else {
-                await createVid(image,meta,title)
+                createVid()
               }
             };
-            ctx.drawImage(image, 0, 0, canvas.width, canvas.height);
+            ctx.drawImage(images[imageIndex][0], 0, 0, canvas.width, canvas.height);
             recorder.start();
             setTimeout(function() {
               recorder.stop()
