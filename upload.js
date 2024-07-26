@@ -4,7 +4,7 @@ var canvas = document.createElement("canvas");
           var ctx = canvas.getContext('2d');
 
         imageInput.addEventListener('change',
-                                    function () {
+                                    async function () {
             const files = this.files;
             filesLength = files.length;
             uploadProg()
@@ -20,7 +20,7 @@ var canvas = document.createElement("canvas");
                     img.onload = function () {
                       vMetadata.width = this.width
                       vMetadata.height = this.height
-                      createVid2(img,vMetadata,document.getElementById("file").files.item(0).name)
+                      await createVid(img,vMetadata,document.getElementById("file").files.item(0).name)
                     };
                     uploadText.innerHTML = "Converting..."
                 } else if (file.type.match('video.*')) {
@@ -29,10 +29,9 @@ var canvas = document.createElement("canvas");
             }
         });
 
-        function createVid(image,meta,title) {
+        async function createVid(image,meta,title) {
+          return new Promise((resolve,reject) => {
                 console.log(image,meta,title)
-          var canvas = document.createElement("canvas");
-          var ctx = canvas.getContext('2d');
           canvas.width = meta.width
           canvas.height = meta.height
 
@@ -46,13 +45,14 @@ var canvas = document.createElement("canvas");
               chunks.push(e.data);
             };
 
-            recorder.onstop = function () {
+            recorder.onstop = async function () {
               if (chunks[0].size > 217) {
                 var blob = new Blob(chunks,
                                       { type: 'video/webm' })
                 showLink(blob,meta,title)
+                resolve()
               } else {
-                setTimeout(function() {createVid(image,meta,title)},500)
+                await createVid(image,meta,title)
               }
             };
             ctx.drawImage(image, 0, 0, canvas.width, canvas.height);
@@ -98,46 +98,4 @@ function showLink(obj,meta,title) {
     modal.style.display = "block";
     uploadText.innerHTML = "<b>Done</b>"
   }
-}
-
-function createVid2(image,meta,title) {
-          canvas.width = meta.width
-          canvas.height = meta.height
-        var images = file.files
-            if (images.length === 0) {
-                console.log('Please select some images first.');
-                return;
-            }
-
-            const frameRate = 10; // Frames per second
-            const recorder = new MediaRecorder(canvas.
-              captureStream(frameRate),
-              { mimeType: 'video/webm' });
-            const chunks = [];
-
-            recorder.ondataavailable = function (e) {
-                if (e.data.size > 0) {
-                    chunks.push(e.data);
-                }
-            };
-
-            recorder.onstop = function () {
-              if (chunks[0].size > 217) {
-                showLink(new Blob(chunks,
-                                      { type: 'video/webm' }),meta,title);
-                      console.log(URL.createObjectURL(chunks[0]))
-              } else {
-                setTimeout(function() {createVid(image,meta,title)},500)
-              }
-            };
-            setTimeout(function() {
-              recorder.stop()
-               return;
-            },10000)
-            const drawFrame = () => {
-                    ctx.drawImage(image,0, 0,
-                                  canvas.width, canvas.height);
-            };
-            drawFrame()
-            recorder.start();
 }
