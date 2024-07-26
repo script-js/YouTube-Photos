@@ -33,6 +33,7 @@ function getShares() {
                   "id": k.snippet.resourceId.videoId
                 })
         .then(function(response) {
+          console.log(JSON.parse(response.body).items[0])
             if (JSON.parse(response.body).items[0]) {
               if (JSON.parse(response.body).items[0].status.privacyStatus == "unlisted") {
                 var elem = document.createElement("div")
