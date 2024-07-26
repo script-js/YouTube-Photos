@@ -1,16 +1,9 @@
         const imageInput = document.getElementById('file');
         var filesLength = 0;
-        var imageIndex = 0;
-        var images = [];
-var imageDone = true
-var canvas = document.createElement("canvas");
-          var ctx = canvas.getContext('2d');
+        var imageDone = true
 
         imageInput.addEventListener('change',
                                     function () {
-                                            images = []
-                                            imageIndex = 0
-                                            imageDone = true
                                             uploadUL.style.display = "none"
                                             uploadUL.innerHTML = ""
             const files = this.files;
@@ -28,11 +21,7 @@ var canvas = document.createElement("canvas");
                     img.onload = function () {
                       vMetadata.width = this.width
                       vMetadata.height = this.height
-                      images.push([img,vMetadata,document.getElementById("file").files.item(0).name])
-                        if (imageDone) {
-                                createVid();
-                                imageDone = false
-                        }
+                      createVid(img,vMetadata,document.getElementById("file").files.item(0).name)
                     };
                     uploadText.innerHTML = "Converting..."
                 } else if (file.type.match('video.*')) {
@@ -41,41 +30,13 @@ var canvas = document.createElement("canvas");
             }
         });
 
-        function createVid() {
-          ctx.clearRect(0, 0, canvas.width, canvas.height)
-          var meta = images[imageIndex][1];
-          canvas.width = meta.width
-          canvas.height = meta.height
-
-            const frameRate = 10; // Frames per second
-            const recorder = new MediaRecorder(canvas.
-              captureStream(frameRate),
-              { mimeType: 'video/webm' });
-            const chunks = [];
-
-            recorder.ondataavailable = function (e) {
-              chunks.push(e.data);
-            };
-
-            recorder.onstop = function () {
-              if (chunks[0].size > 217) {
-                var blob = new Blob(chunks,
-                                      { type: 'video/webm' })
-                showLink(blob,meta,images[imageIndex][2])
-                if (imageIndex < (images.length + 1)) {
-                  createVid()
-                }
-                imageIndex += 1;
-              } else {
-                createVid()
-              }
-            };
-            ctx.drawImage(images[imageIndex][0], 0, 0, canvas.width, canvas.height);
-            recorder.start();
-            setTimeout(function() {
-              recorder.stop()
-            },1000)
+function createVid(img,meta,title) {
+        var frame1 = document.createElement("iframe")
+        frame1.onload = function() {
+          this.contentWindow.createVid(img,meta,title)
         }
+        frame1.src = "createvid"
+}
 
 function uploadProg(off) {
   if (off) {
