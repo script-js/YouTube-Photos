@@ -9,8 +9,8 @@
             const files = this.files;
             filesLength = files.length;
             uploadProg()
-            files.forEach(function(k) {
-                const file = k;
+            Object.keys(files).forEach(function(k) {
+                const file = files[k];
                 var vMetadata = {
                   date: document.getElementById("file").files[0].lastModified,
                   type: document.getElementById("file").files[0].type
