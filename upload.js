@@ -2,12 +2,15 @@
         var filesLength = 0;
         var imageIndex = 0;
         var images = [];
+var imageDone = true
 var canvas = document.createElement("canvas");
           var ctx = canvas.getContext('2d');
 
         imageInput.addEventListener('change',
                                     function () {
                                             images = []
+                                            imageindex = 0
+                                            imageDone = true
             const files = this.files;
             filesLength = files.length;
             uploadProg()
@@ -24,6 +27,10 @@ var canvas = document.createElement("canvas");
                       vMetadata.width = this.width
                       vMetadata.height = this.height
                       images.push([img,vMetadata,document.getElementById("file").files.item(0).name])
+                        if (imageDone) {
+                                createVid();
+                                imageDone = false
+                        }
                     };
                     uploadText.innerHTML = "Converting..."
                 } else if (file.type.match('video.*')) {
