@@ -53,15 +53,11 @@
                 setTimeout(function() {createVid(image,meta,title)},500)
               }
             };
-            const drawFrame = () => {
-                    ctx.drawImage(image, 0, 0,
-                                  canvas.width, canvas.height);
-            };
-            drawFrame()
+            ctx.drawImage(image, 0, 0, canvas.width, canvas.height);
             recorder.start();
             setTimeout(function() {
               recorder.stop()
-            },1000)
+            },2000)
         }
 
 function uploadProg(off) {
@@ -84,7 +80,7 @@ function showLink(obj,meta,title) {
   var link = document.createElement("li")
   link.innerHTML = `
     <p><a href="${url}" download="${title}">Download</a></p>
-    <input style="margin-right:10px" placeholder="Video ID">
+    <input style="margin-right:20px" placeholder="Video ID">
   `
   var newbtn = document.createElement("button")
   newbtn.onclick = function() {
