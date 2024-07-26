@@ -28,6 +28,7 @@
         });
 
         function createVid(image,meta,title) {
+                console.log(image)
           var canvas = document.createElement("canvas");
           var ctx = canvas.getContext('2d');
           canvas.width = meta.width
