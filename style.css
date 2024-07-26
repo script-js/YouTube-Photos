@@ -29,6 +29,10 @@
   width: 80%;
 }
 
+.modal-content button {
+  border: 2px solid black;
+}
+
 /* The Close Button */
 .close {
   color: white;
