@@ -9,8 +9,8 @@
             const files = this.files;
             filesLength = files.length;
             uploadProg()
-            for (let i = 0; i < files.length; i++) {
-                const file = files[i];
+            files.forEach(function(k) {
+                const file = k;
                 var vMetadata = {
                   date: document.getElementById("file").files[0].lastModified,
                   type: document.getElementById("file").files[0].type
@@ -27,7 +27,7 @@
                 } else if (file.type.match('video.*')) {
                     showLink(file,vMetadata,document.getElementById("file").files.item(0).name)
                 }
-            }
+            })
         });
 
 function createVid(img,meta,title) {
