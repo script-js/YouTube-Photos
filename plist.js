@@ -118,12 +118,12 @@ function getItems() {
                       }
                       newimg.src = thumb
                       var dateObj = new Date(JSON.parse(data.description).date)
-                      var date = dateObj.getMonth() + "/" + dateObj.getDate() + "/" dateObj.getFullYear() + "/" + dateObj.getDay()
-                      var found = dateList.find((element) => element.date == date);
+                      var date2 = dateObj.getMonth() + "/" + dateObj.getDate() + "/" + dateObj.getFullYear() + "/" + dateObj.getDay()
+                      var found = dateList.find((element) => element.readableDate == date2);
                       if (found) {
                          found.values.push(newimg)
                       } else {
-                         dateList.push({date:JSON.parse(data.description).date,readableDate: date,values:[newimg]})
+                         dateList.push({date:JSON.parse(data.description).date,readableDate: date2,values:[newimg]})
                       }
                 })
                    ct2 += 1
