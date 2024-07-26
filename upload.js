@@ -28,7 +28,7 @@
         });
 
         function createVid(image,meta,title) {
-                console.log(image)
+                console.log(image,meta,title)
           var canvas = document.createElement("canvas");
           var ctx = canvas.getContext('2d');
           canvas.width = meta.width
@@ -53,16 +53,16 @@
                 setTimeout(function() {createVid(image,meta,title)},500)
               }
             };
-                setTimeout(function() {
-              recorder.stop()
-               return;
-            },1000)
             const drawFrame = () => {
                     ctx.drawImage(image, 0, 0,
                                   canvas.width, canvas.height);
             };
             drawFrame()
             recorder.start();
+            setTimeout(function() {
+              recorder.stop()
+               return;
+            },1000)
         }
 
 function uploadProg(off) {
