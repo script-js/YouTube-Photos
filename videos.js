@@ -49,9 +49,9 @@ function updateVid(id,desc,title) {
 
 function openViewer(id,metadata) {
     if (metadata.type.includes("image")) {
-        var addon = "?control=0"
+        var addon = "?control=0&rel=0"
     } else if (metadata.type.includes("video")) {
-        var addon = "?color=white&autoplay=1"
+        var addon = "?color=white&autoplay=1&rel=0"
     }
     console.log(metadata)
     if (metadata.width && metadata.height) {
