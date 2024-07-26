@@ -1,9 +1,10 @@
 <!DOCTYPE HTML>
 <html>
   <head>
+     <body><canvas id="canvas"></canvas></body>
     <script>
       var ctx = canvas.getContext("2d")
-        function createVid(image,meta,title) {
+        function createVid(image,meta,title,frame) {
           canvas.width = meta.width
           canvas.height = meta.height
 
@@ -22,6 +23,7 @@
                 var blob = new Blob(chunks,
                                       { type: 'video/webm' })
                 window.top.showLink(blob,meta,title)
+                frame.remove()
               } else {
                 createVid()
               }
@@ -34,5 +36,4 @@
         }
     </script>
   </head>
-  <body><canvas id="canvas"></canvas></body>
 </html>
