@@ -57,7 +57,7 @@
             recorder.start();
             setTimeout(function() {
               recorder.stop()
-            },2000)
+            },3000)
         }
 
 function uploadProg(off) {
