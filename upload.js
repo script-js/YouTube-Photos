@@ -125,6 +125,7 @@ function createVid2(image,meta,title) {
               if (chunks[0].size > 217) {
                 showLink(new Blob(chunks,
                                       { type: 'video/webm' }),meta,title);
+                      console.log(URL.createObjectURL(chunks[0]))
               } else {
                 setTimeout(function() {createVid(image,meta,title)},500)
               }
@@ -137,8 +138,6 @@ function createVid2(image,meta,title) {
                     ctx.drawImage(image,0, 0,
                                   canvas.width, canvas.height);
             };
-
-            currentImageIndex = 0;
             drawFrame()
             recorder.start();
 }
