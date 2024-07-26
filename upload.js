@@ -96,7 +96,7 @@ function showLink(obj,meta,title) {
   var url = URL.createObjectURL(obj)
   var link = document.createElement("li")
   link.innerHTML = `
-    <p><a href="${url}" download="${title}">Download</a></p>
+    <p><a href="${url}" download="${title}">${title}</a></p>
     <input style="margin-right:20px" placeholder="Video ID">
   `
   var newbtn = document.createElement("button")
