@@ -1,0 +1,38 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <script>
+      var ctx = canvas.getContext("2d")
+        function createVid(image,meta,title) {
+          canvas.width = meta.width
+          canvas.height = meta.height
+
+            const frameRate = 10; // Frames per second
+            const recorder = new MediaRecorder(canvas.
+              captureStream(frameRate),
+              { mimeType: 'video/webm' });
+            const chunks = [];
+
+            recorder.ondataavailable = function (e) {
+              chunks.push(e.data);
+            };
+
+            recorder.onstop = function () {
+              if (chunks[0].size > 217) {
+                var blob = new Blob(chunks,
+                                      { type: 'video/webm' })
+                window.top.showLink(blob,meta,title)
+              } else {
+                createVid()
+              }
+            };
+            ctx.drawImage(image, 0, 0, canvas.width, canvas.height);
+            recorder.start();
+            setTimeout(function() {
+              recorder.stop()
+            },1000)
+        }
+    </script>
+  </head>
+  <body><canvas id="canvas"></canvas></body>
+</html>
