@@ -21,7 +21,6 @@
                       createVid(img,vMetadata,document.getElementById("file").files.item(0).name)
                     };
                     uploadText.innerHTML = "Converting..."
-                    t
                 } else if (file.type.match('video.*')) {
                     showLink(file,vMetadata,document.getElementById("file").files.item(0).name)
                 }
