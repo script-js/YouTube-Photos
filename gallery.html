@@ -132,11 +132,11 @@ function positionMenu(e) {
     getVideo(id,function(response) {
                if (JSON.parse(response.description).type.includes("image")) {
                  menu_download.onclick = function() {
-                   var download = document.createElement("a")
-                   download.href = response.thumbnails.maxres.url
-                   download.target = "_blank"
-                   download.download = response.title
-                   download.click()
+                   var a = document.createElement("a")
+                   a.href = response.thumbnails.maxres.url
+                   a.target = "_blank"
+                   a.download = response.title
+                   a.click()
                  }
                 } else if (JSON.parse(response.description).type.includes("video")) {
                   menu_download.onclick = function() {
