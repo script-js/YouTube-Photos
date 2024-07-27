@@ -144,7 +144,7 @@ function positionMenu(e) {
                   download.download = response.title
                   download.click()
                 } else if (JSON.parse(response.description).type.includes("video")) {
-                  alert("Private YouTube videos cannot be downloaded, you your video will be made unlisted. You can disable this in the Sharing tab.")
+                  alert("Private YouTube videos cannot be downloaded, you your video will be made unlisted. You can disable this by right-clicking the video in the sharing tab.")
                   share(id,"")
                   window.open("https://youtube5s.com/watch?v=" + id)
                 }
