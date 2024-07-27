@@ -28,7 +28,7 @@
 
                   video.onloadedmetadata = function() {
                     console.log(video.duration)
-                    if (video.duration >= 1) {
+                    if (video.duration >= 1 && video.duration != Infinity) {
                       window.top.showLink(blob,meta,title)
                       frame.remove()
                     } else {
