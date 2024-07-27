@@ -10,7 +10,12 @@ function share(id,meta) {
           "privacyStatus": "unlisted"
         }
     })
-    return "https://ytphotos.pages.dev/share?v=" + id
+  if (JSON.parse(JSON.parse(response.body).items[0].snippet.description).type.includes("image")) {
+                  var addon = "?control=0&rel=0"
+                } else if (JSON.parse(JSON.parse(response.body).items[0].snippet.description).type.includes("video")) {
+                  var addon = "?color=white&autoplay=1&rel=0"
+                }
+    return "https://www.youtube.com/embed/" + k.snippet.resourceId.videoId + addon
 }
 
 function getShares() {
