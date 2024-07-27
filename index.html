@@ -177,7 +177,7 @@ function tabChange(tab) {
         function showShare(url) {
           shareContent.innerHTML = `
             <h2>Share</h2>
-            <input value="${url}" readonly id="tocopy"><button onclick="tocopy.select();document.execCommand('copy');this.innerHTML = 'done'" class="material-symbols-outlined" style="font-size:15px">copy</button>
+            <input value="${url}" readonly id="tocopy"><button onclick="tocopy.select();document.execCommand('copy');this.innerHTML = 'check'" class="material-symbols-outlined" style="font-size:15px">content_copy</button>
           `
           modal2.style.display = "block"
         }
