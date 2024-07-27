@@ -81,20 +81,28 @@ textarea {
         height: 99%;
       }
 
-      .context-menu {
+    .context-menu {
         display: none;
         position: absolute;
         z-index: 10;
         background: #4d4d4d;
         border: 1px solid black;
         padding: 5px;
+        border-radius: 5px;
     }
     .menu-item {
       display: flex;
       align-items: center;
       border-bottom: 1px solid gray;
       font-size: 13px;
+      transition: ease 100ms;
     }
+
+    .menu-item:hover {
+      background: #767575;
+      border-radius: 4px;
+    }
+    
     .menu-item .material-symbols-outlined {
       font-size: 15px;
     }
@@ -102,7 +110,8 @@ textarea {
   </head>
   <body>
     <div class="context-menu">
-      
+      <div class="menu-item"><span class="material-symbols-outlined">share</span>Share</div>
+      <div class="menu-item"><span class="material-symbols-outlined">download</span>Download</div>
     </div>
 </div>
     <nav><div class="logobox"><img src="favicon.ico" width="75"> <h3 style="margin-left:1em">YouTube Photos</h3></div><div style="display:flex"><a href="gallery" target="view" class="active" onclick="tabChange(this)"><span class="material-symbols-outlined">photo_library</span><br>Gallery</a><a href="shares" target="view" onclick="tabChange(this)"><span class="material-symbols-outlined">group</span><br>Sharing</a><a href="settings" target="view" onclick="tabChange(this)"><span class="material-symbols-outlined">settings</span><br>Settings</a></div></nav>
