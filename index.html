@@ -119,12 +119,12 @@ textarea {
 </div>
 </div>
 
-    <div id="sharePopup" class="modal">
+    <div id="modal2" class="modal">
 
-  <!-- Modal content -->
   <div class="modal-content" style="text-align:center">
     <span class="close material-symbols-outlined">close</span>
-    <div id="shareContent"></div>
+    <h1>How to <span id="howtoTitle"></span></h1>
+    <h3 id="howto"></h3>
 </div>
 </div>
 <script>
@@ -147,7 +147,6 @@ span.onclick = function() {
   modal.style.display = "none";
 }
 
-var modal2 = document.getElementById("sharePopup");
 var span2 = document.getElementsByClassName("close")[1];
   
 span2.onclick = function() {
@@ -174,11 +173,9 @@ function tabChange(tab) {
         }
         document.getElementsByName("view")[0].src = "gallery";
 
-        function showShare(url) {
-          shareContent.innerHTML = `
-            <h2>Share</h2>
-            <input value="${url}" readonly id="tocopy"><button onclick="tocopy.select();document.execCommand('copy');this.innerHTML = 'check'" class="material-symbols-outlined" style="font-size:15px">content_copy</button>
-          `
+        function howto(text,title) {
+          howto.innerHTML = text
+          howtoTitle.innerHTML = title
           modal2.style.display = "block"
         }
       </script>
