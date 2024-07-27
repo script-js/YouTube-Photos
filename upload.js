@@ -75,6 +75,6 @@ function showLink(obj,meta,title) {
     uploadProg(true)
     modal.style.display = "block";
     uploadUL.style.display = "block"
-    uploadText.innerHTML = "<b>Done</b>"
+    uploadText.innerHTML = "<b>Done</b><br>Click the filenames to download, then upload them to <a href='https://studio.youtube.com/'>YouTube Studio</a>"
   }
 }
