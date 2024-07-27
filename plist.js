@@ -55,7 +55,7 @@ function getAlbums(handoff) {
              response.items.forEach(function(k,index,array) {
                if (k.snippet.title.includes("YouTubePhotosAlbum:")) {
                  console.log(k)
-                 albums.push({"id":k.id,"thumbnail":k.snippet.thumbnails.default.url,"title":k.snippet.title})
+                 albums.push({"id":k.id,"thumbnail":k.snippet.thumbnails.default.url,"title":k.snippet.title.replace("YouTubePhotosAlbum:")})
                }
                 if (index == (array.length - 1)) {
                    handoff(albums)
