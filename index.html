@@ -86,6 +86,7 @@ textarea {
         display: none;
         position: absolute;
         z-index: 10;
+        background: #4d4d4d;
     }
     </style>
   </head>
@@ -216,6 +217,8 @@ span.onclick = function() {
 window.onclick = function(event) {
   if (event.target == modal) {
     modal.style.display = "none";
+  } else if (event.target != menu) {
+    toggleMenuOff()
   }
 }
 var currentTab = "gallery";
@@ -253,19 +256,12 @@ var menu = document.querySelector(".context-menu");
 var menuState = 0;
 var contextMenuActive = "block";
 
-// Method to turn on fullscreen of current window
-function fullscreen() {
-    document.documentElement.requestFullscreen();
-}
-
-// Event Listener for window ContextMenu Event - When Right Click is clicked
-document.addEventListener("contextmenu", function (event) {
+window.addEventListener("contextmenu", function (event) {
     event.preventDefault();
     toggleMenuOn();
     positionMenu(event);
 });
 
-// Turns the custom context menu on.
 function toggleMenuOn() {
     if (menuState !== 1) {
         menuState = 1;
@@ -273,7 +269,6 @@ function toggleMenuOn() {
     }
 }
 
-// Turns the custom context menu off.
 function toggleMenuOff() {
     if (menuState !== 0) {
         menuState = 0;
@@ -281,7 +276,6 @@ function toggleMenuOff() {
     }
 }
 
-// Get the position of the right click in window and returns the X and Y coordinates
 function getPosition(e) {
     var posx = 0;
     var posy = 0;
@@ -306,7 +300,6 @@ function getPosition(e) {
     };
 }
 
-// Position the Context Menu in right position.
 function positionMenu(e) {
     let clickCoords = getPosition(e);
     let clickCoordsX = clickCoords.x;
@@ -328,21 +321,6 @@ function positionMenu(e) {
         menu.style.top = windowHeight - menuHeight + "px";
     } else {
         menu.style.top = clickCoordsY + "px";
-    }
-}
-
-// Event Listener for Close Context Menu when outside of menu clicked
-document.addEventListener("click", (e) => {
-    var button = e.which || e.button;
-    if (button === 1) {
-        toggleMenuOff();
-    }
-});
-
-// Close Context Menu on Esc key press
-window.onkeyup = function (e) {
-    if (e.keyCode === 27) {
-        toggleMenuOff();
     }
 }
 </script>
