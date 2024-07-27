@@ -21,7 +21,7 @@
                     img.onload = function () {
                       vMetadata.width = this.width
                       vMetadata.height = this.height
-                      createVid(img,vMetadata,document.getElementById("file").files.item(0).name)
+                      createVid(img,vMetadata,file.name)
                     };
                     uploadText.innerHTML = "Converting..."
                 } else if (file.type.match('video.*')) {
