@@ -37,7 +37,7 @@
   </head>
   <body>
     <div class="context-menu">
-      <div class="menu-item" id="menu_share"><span class="material-symbols-outlined">share</span>Share</div>
+      <div class="menu-item" id="menu_edit"><span class="material-symbols-outlined">edit</span>Open in YouTube</div>
       <div class="menu-item" id="menu_download"><span class="material-symbols-outlined">download</span>Download</div>
     </div>
     <h3 id="loadText">Loading...</h3>
@@ -126,15 +126,8 @@ function positionMenu(e) {
 }
 
   function updateMenu(id) {
-    menu_share.onclick = function() {
-        getVideo(id,function(response) {
-               if (JSON.parse(response.description).type.includes("image")) {
-                  var addon = "?control=0&rel=0"
-                } else if (JSON.parse(response.description).type.includes("video")) {
-                  var addon = "?color=white&autoplay=1&rel=0"
-                }
-          window.top.showShare(share(id,addon))
-      })
+    menu_edit.onclick = function() {
+        window.open("https://studio.youtube.com/video/" + id + "/edit")
     }
     menu_download.onclick = function() {
       getVideo(id,function(response) {
