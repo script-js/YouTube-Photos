@@ -137,7 +137,16 @@ function positionMenu(e) {
       })
     }
     menu_download.onclick = function() {
-      downloadVid(id)
+      getVideo(id,function(response) {
+               if (JSON.parse(response.description).type.includes("image")) {
+                  var download = document.createElement("a")
+                  download.href = response.thumbnails.high.url
+                  download.download = response.title
+                  download.click()
+                } else if (JSON.parse(response.description).type.includes("video")) {
+                  window.open("https://youtube5s.com/watch?v=" + id)
+                }
+      })
     }
   }
 </script>
