@@ -37,8 +37,8 @@
   </head>
   <body>
     <div class="context-menu">
-      <div class="menu-item"><span class="material-symbols-outlined">share</span>Share</div>
-      <div class="menu-item"><span class="material-symbols-outlined">download</span>Download</div>
+      <div class="menu-item" id="menu_share"><span class="material-symbols-outlined">share</span>Share</div>
+      <div class="menu-item" id="menu_download"><span class="material-symbols-outlined">download</span>Download</div>
     </div>
     <h3 id="loadText">Loading...</h3>
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
@@ -123,5 +123,14 @@ function positionMenu(e) {
         menu.style.top = clickCoordsY + "px";
     }
 }
+
+  function updateMenu(id) {
+    menu_share.onclick = function() {
+      window.top.showShare(share(id))
+    }
+    menu_download.onclick = function() {
+      downloadVid(id)
+    }
+  }
 </script>
 </html>
