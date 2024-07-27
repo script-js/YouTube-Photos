@@ -117,6 +117,11 @@ function getItems() {
                         openViewer(videos[k],JSON.parse(data.description))
                       }
                       newimg.src = thumb
+                      newimg.addEventListener("contextmenu", function (event) {
+                        event.preventDefault();
+                        toggleMenuOn();
+                        positionMenu(event);
+                      });
                       var dateObj = new Date(JSON.parse(data.description).date)
                       var date2 = dateObj.getMonth() + "/" + dateObj.getDate() + "/" + dateObj.getFullYear() + "/" + dateObj.getDay()
                       var found = dateList.find((element) => element.readableDate == date2);
