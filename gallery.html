@@ -129,20 +129,21 @@ function positionMenu(e) {
     menu_edit.onclick = function() {
         window.open("https://studio.youtube.com/video/" + id + "/edit")
     }
-    menu_download.onclick = function() {
-      getVideo(id,function(response) {
+    getVideo(id,function(response) {
                if (JSON.parse(response.description).type.includes("image")) {
-                  var download = document.createElement("a")
-                  download.href = response.thumbnails.maxres.url
-                  download.download = response.title
-                  download.click()
+                 menu_download.onclick = function() {
+                   var download = document.createElement("a")
+                   download.href = response.thumbnails.maxres.url
+                   download.target = "_blank"
+                   download.download = response.title
+                   download.click()
+                 }
                 } else if (JSON.parse(response.description).type.includes("video")) {
-                  alert("Private YouTube videos cannot be downloaded, you your video will be made unlisted. You can disable this by right-clicking the video in the sharing tab.")
-                  share(id,"")
-                  window.open("https://youtube5s.com/watch?v=" + id)
+                  menu_download.onclick = function() {
+                   alert("To download a video file, click Open in YouTube, then click the three dots in the top-right corner and select download.")
+                 }
                 }
       })
-    }
   }
 </script>
 </html>
