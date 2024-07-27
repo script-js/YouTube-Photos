@@ -1,0 +1,34 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>YouTube Photos</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="//apis.google.com/js/client:plusone.js"></script>
+      <script>
+        function startup() {
+          getAlbums(function(array) {
+            array.forEach(function(k) {
+                var elem = document.createElement("div")
+                elem.innerHTML = `
+                  <img src="${k.thumbnail}"><a style="padding-left:1.5em" target="_blank" href="https://ytphotos.pages.dev/gallery?album=${k.id}">${k.title}</a>
+                `
+                elem.style = "margin-bottom: 20px;display:flex;align-items:center;"
+                document.body.appendChild(elem)
+            })
+          })
+        }
+      </script>
+      <script src="googleauth.js"></script>
+      <script src="plist.js"></script>
+      <script async defer src="https://apis.google.com/js/api.js"
+        onload="gapiLoaded()"></script>
+    <script async defer src="https://accounts.google.com/gsi/client"
+        onload="gisLoaded()"></script>
+  </body>
+</html>
+  </body>
+</html>
