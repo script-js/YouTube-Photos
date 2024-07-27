@@ -38,7 +38,7 @@ function getPlaylist() {
   });
 }
 
-function getAlbum(handoff) {
+function getAlbums(handoff) {
    gapi.client.request({
     path: '/youtube/v3/playlists',
     params: {
