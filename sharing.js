@@ -1,4 +1,4 @@
-function share(id) {
+function share(id,addon) {
   gapi.client.youtube.videos.update({
       "part": [
         "snippet,status,localizations"
@@ -9,13 +9,7 @@ function share(id) {
         "status": {
           "privacyStatus": "unlisted"
         }
-    }).then(function(response) {
-  if (JSON.parse(JSON.parse(response.body).items[0].snippet.description).type.includes("image")) {
-                  var addon = "?control=0&rel=0"
-                } else if (JSON.parse(JSON.parse(response.body).items[0].snippet.description).type.includes("video")) {
-                  var addon = "?color=white&autoplay=1&rel=0"
-                }
-  })
+    })
     return "https://www.youtube.com/embed/" + id + addon
 }
 
