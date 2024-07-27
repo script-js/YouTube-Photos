@@ -9,7 +9,7 @@ function share(id,addon) {
         "status": {
           "privacyStatus": "unlisted"
         }
-    }).then(function() {console.log("shared")}).catch(err) {console.error(err)}
+    }).then(function() {console.log("shared")}).catch((err) => console.error(err))
     return "https://www.youtube.com/embed/" + id + addon
 }
 
