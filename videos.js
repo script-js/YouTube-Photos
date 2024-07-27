@@ -31,12 +31,6 @@ function updateVid(id,desc,title) {
         },
         "status": {
           "privacyStatus": "private"
-        },
-        "localizations": {
-          "es": {
-            "title": "no hay nada a ver aqui",
-            "description": "Esta descripcion es en español."
-          }
         }
       }
     })
