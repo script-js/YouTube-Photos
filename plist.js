@@ -65,6 +65,31 @@ function createPlaylist() {
               function(err) { console.error("Execute error", err); });
 }
 
+function createAlbum(name) {
+    return gapi.client.youtube.playlists.insert({
+      "part": [
+        "snippet,status"
+      ],
+      "resource": {
+        "snippet": {
+          "title": "YouTubePhotosAlbum:" + name,
+          "tags": [
+            "YouTube Photos"
+          ],
+          "defaultLanguage": "en-us"
+        },
+        "status": {
+          "privacyStatus": "private"
+        }
+      }
+    })
+        .then(function(response) {
+                // Handle the results here (response.result has the parsed body).
+                playlist = JSON.parse(response.body).id
+              },
+              function(err) { console.error("Execute error", err); });
+}
+
 function addVideoToPlaylist(videoId) {
     return gapi.client.youtube.playlistItems.insert({
       "part": [
