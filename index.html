@@ -124,7 +124,7 @@ textarea {
   <div class="modal-content" style="text-align:center">
     <span class="close material-symbols-outlined">close</span>
     <h1>How to <span id="howtoTitle"></span></h1>
-    <h3 id="howto"></h3>
+    <h3 id="howtoT"></h3>
 </div>
 </div>
 <script>
@@ -174,7 +174,7 @@ function tabChange(tab) {
         document.getElementsByName("view")[0].src = "gallery";
 
         function howto(text,title) {
-          howto.innerHTML = text
+          howtoT.innerHTML = text
           howtoTitle.innerHTML = title
           modal2.style.display = "block"
         }
