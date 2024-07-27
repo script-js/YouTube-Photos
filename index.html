@@ -179,6 +179,7 @@ function tabChange(tab) {
             <h2>Share</h2>
             <input value="${url}" readonly id="tocopy"><button onclick="tocopy.select();document.execCommand('copy');this.innerHTML = 'done'" class="material-symbols-outlined" style="font-size:15px">copy</button>
           `
+          shareContent.style.display = "block"
         }
       </script>
       <script src="googleauth.js"></script>
