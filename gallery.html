@@ -4,9 +4,42 @@
     <meta charset="utf-8">
     <title>YouTube Photos</title>
     <link rel="stylesheet" href="style.css" />
-    <style>img {cursor:pointer}</style>
+    <style>
+    img {cursor:pointer}
+    .context-menu {
+        display: none;
+        position: absolute;
+        z-index: 10;
+        background: #4d4d4d;
+        border: 1px solid black;
+        padding: 5px;
+        border-radius: 5px;
+    }
+    .menu-item {
+      display: flex;
+      align-items: center;
+      gap: 3px;
+      border-bottom: 1px solid gray;
+      transition: ease 100ms;
+      padding: 3px;
+      cursor: pointer;
+    }
+
+    .menu-item:hover {
+      background: #767575;
+      border-radius: 4px;
+    }
+    
+    .menu-item .material-symbols-outlined {
+      font-size: 30px;
+    }
+    </style>
   </head>
   <body>
+    <div class="context-menu">
+      <div class="menu-item"><span class="material-symbols-outlined">share</span>Share</div>
+      <div class="menu-item"><span class="material-symbols-outlined">download</span>Download</div>
+    </div>
     <h3 id="loadText">Loading...</h3>
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
     <script src="//apis.google.com/js/client:plusone.js"></script>
@@ -25,4 +58,70 @@
   </body>
 </html>
   </body>
+<script>
+var menu = document.querySelector(".context-menu");
+var menuState = 0;
+
+function toggleMenuOn() {
+    if (menuState !== 1) {
+        menuState = 1;
+        menu.style.display = "block"
+    }
+}
+
+function toggleMenuOff() {
+    if (menuState !== 0) {
+        menuState = 0;
+        menu.style.display = "none"
+    }
+}
+
+function getPosition(e) {
+    var posx = 0;
+    var posy = 0;
+
+    if (!e) var e = window.event;
+
+    if (e.pageX || e.pageY) {
+        posx = e.pageX;
+        posy = e.pageY;
+    } else if (e.clientX || e.clientY) {
+        posx =
+            e.clientX +
+            document.body.scrollLeft +
+            document.documentElement.scrollLeft;
+        posy =
+            e.clientY + document.body.scrollTop + document.documentElement.scrollTop;
+    }
+
+    return {
+        x: posx,
+        y: posy
+    };
+}
+
+function positionMenu(e) {
+    let clickCoords = getPosition(e);
+    let clickCoordsX = clickCoords.x;
+    let clickCoordsY = clickCoords.y;
+
+    let menuWidth = menu.offsetWidth + 4;
+    let menuHeight = menu.offsetHeight + 4;
+
+    let windowWidth = window.innerWidth;
+    let windowHeight = window.innerHeight;
+
+    if (windowWidth - clickCoordsX < menuWidth) {
+        menu.style.left = windowWidth - menuWidth + "px";
+    } else {
+        menu.style.left = clickCoordsX + "px";
+    }
+
+    if (windowHeight - clickCoordsY < menuHeight) {
+        menu.style.top = windowHeight - menuHeight + "px";
+    } else {
+        menu.style.top = clickCoordsY + "px";
+    }
+}
+</script>
 </html>
