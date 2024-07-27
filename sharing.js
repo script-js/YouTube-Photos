@@ -1,4 +1,4 @@
-function share(id,meta) {
+function share(id) {
   gapi.client.youtube.videos.update({
       "part": [
         "snippet,status,localizations"
@@ -16,7 +16,7 @@ function share(id,meta) {
                   var addon = "?color=white&autoplay=1&rel=0"
                 }
   })
-    return "https://www.youtube.com/embed/" + k.snippet.resourceId.videoId + addon
+    return "https://www.youtube.com/embed/" + id + addon
 }
 
 function getShares() {
