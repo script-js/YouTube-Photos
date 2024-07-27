@@ -93,9 +93,11 @@ textarea {
     .menu-item {
       display: flex;
       align-items: center;
+      gap: 3px;
       border-bottom: 1px solid gray;
-      font-size: 13px;
       transition: ease 100ms;
+      padding: 3px;
+      cursor: pointer;
     }
 
     .menu-item:hover {
@@ -104,7 +106,7 @@ textarea {
     }
     
     .menu-item .material-symbols-outlined {
-      font-size: 15px;
+      font-size: 30px;
     }
     </style>
   </head>
@@ -207,7 +209,6 @@ function tabChange(tab) {
 <script>
 var menu = document.querySelector(".context-menu");
 var menuState = 0;
-var contextMenuActive = "block";
 
 window.addEventListener("contextmenu", function (event) {
     event.preventDefault();
@@ -218,14 +219,14 @@ window.addEventListener("contextmenu", function (event) {
 function toggleMenuOn() {
     if (menuState !== 1) {
         menuState = 1;
-        menu.classList.add(contextMenuActive);
+        menu.style.display = "block"
     }
 }
 
 function toggleMenuOff() {
     if (menuState !== 0) {
         menuState = 0;
-        menu.classList.remove(contextMenuActive);
+        menu.style.display = "none"
     }
 }
 
