@@ -117,6 +117,16 @@ textarea {
       </div>
 
 </div>
+</div>
+
+    <div id="sharePopup" class="modal">
+
+  <!-- Modal content -->
+  <div class="modal-content" style="text-align:center">
+    <span class="close material-symbols-outlined">close</span>
+    <div id="shareContent"></div>
+</div>
+</div>
 <script>
 // Get the modal
 var modal = document.getElementById("popup");
@@ -137,14 +147,13 @@ span.onclick = function() {
   modal.style.display = "none";
 }
 
-// When the user clicks anywhere outside of the modal, close it
-window.onclick = function(event) {
-  if (event.target == modal) {
-    modal.style.display = "none";
-  } else if (event.target != menu) {
-    toggleMenuOff()
-  }
+var modal2 = document.getElementById("sharePopup");
+var span2 = document.getElementsByClassName("close")[1];
+  
+span2.onclick = function() {
+  modal2.style.display = "none";
 }
+
 var currentTab = "gallery";
 function tabChange(tab) {
   tab.classList = "active";
@@ -163,7 +172,14 @@ function tabChange(tab) {
           signinButton.style.display = "none"
           getPlaylist()
         }
-        document.getElementsByName("view")[0].src = "gallery"
+        document.getElementsByName("view")[0].src = "gallery";
+
+        function showShare(url) {
+          shareContent.innerHTML = `
+            <h2>Share</h2>
+            <input value="${url}" readonly id="tocopy"><button onclick="tocopy.select();document.execCommand('copy');this.innerHTML = 'done'" class="material-symbols-outlined" style="font-size:15px">copy</button>
+          `
+        }
       </script>
       <script src="googleauth.js"></script>
       <script src="upload.js"></script>
