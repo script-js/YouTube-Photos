@@ -127,6 +127,7 @@ function positionMenu(e) {
 }
 
   function updateMenu(id) {
+    menu.innerHTML = atob("CiAgICAgIDxkaXYgY2xhc3M9Im1lbnUtaXRlbSIgaWQ9Im1lbnVfZWRpdCI+PHNwYW4gY2xhc3M9Im1hdGVyaWFsLXN5bWJvbHMtb3V0bGluZWQiPmVkaXQ8L3NwYW4+T3BlbiBpbiBZb3VUdWJlPC9kaXY+CiAgICAgIDxkaXYgY2xhc3M9Im1lbnUtaXRlbSIgaWQ9Im1lbnVfZG93bmxvYWQiPjxzcGFuIGNsYXNzPSJtYXRlcmlhbC1zeW1ib2xzLW91dGxpbmVkIj5kb3dubG9hZDwvc3Bhbj5Eb3dubG9hZDwvZGl2PgogICAgICA8ZGl2IGNsYXNzPSJtZW51LWl0ZW0iIGlkPSJtZW51X2Rvd25sb2FkIiBvbmNsaWNrPSJ3aW5kb3cudG9wLmhvd3RvKGBUbyBzaGFyZSwgY2xpY2sgT3BlbiBpbiBZb3VUdWJlIGFuZCBzZWxlY3QgVmlzaWJpbGl0eSBvbiB0aGUgcmlnaHQgc2lkZS48YnI+PGEgaHJlZj0naHR0cHM6Ly9zdXBwb3J0Lmdvb2dsZS5jb20veW91dHViZS9hbnN3ZXIvMTU3MTc3I3ppcHB5PSUyQ3ByaXZhdGUtdmlkZW9zJz5Ib3cgdG8gc2hhcmUgd2l0aCBzcGVjaWZpYyBwZW9wbGU8L2E+YCwnU2hhcmUnKSI+PHNwYW4gY2xhc3M9Im1hdGVyaWFsLXN5bWJvbHMtb3V0bGluZWQiPnNoYXJlPC9zcGFuPlNoYXJlPC9kaXY+CiAgICA=")
     menu_edit.onclick = function() {
         window.open("https://studio.youtube.com/video/" + id + "/edit")
     }
@@ -145,6 +146,21 @@ function positionMenu(e) {
                  }
                 }
       })
+  }
+
+  function albumList(id) {
+    menu.innerHTML = `<div class="menu-item" onclick="createAlbum(prompt('Album Name'))"><span class="material-symbols-outlined">add</span>New</div>`
+    getAlbums(function(arr) {
+      arr.forEach(function(k) {
+        var elem = document.createElement("div")
+        elem.classList = "menu-item"
+        elem.onclick = function() {
+          addVideoToAlbum(id,k.id)
+        }
+        elem.innerHTML = `<img src="${k.thumbnail}" width="32px" height="32px">${k.title}`
+        menu.appendChild(elem)
+      }
+    })
   }
 
   window.onclick = function(event) {
