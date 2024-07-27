@@ -24,7 +24,7 @@ function shareDisable(id) {
         "status": {
           "privacyStatus": "private"
         }
-    }).then(function() {console.log("shared")}).catch(err) {console.error(err)}
+    }).then(function() {console.log("shared")}).catch((err) => console.error(err))
 }
 
 function getShares() {
