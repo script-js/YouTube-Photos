@@ -120,6 +120,7 @@ function getItems() {
                       newimg.addEventListener("contextmenu", function (event) {
                         event.preventDefault();
                         toggleMenuOn();
+                        updateMenu(videos[k])
                         positionMenu(event);
                       });
                       var dateObj = new Date(JSON.parse(data.description).date)
