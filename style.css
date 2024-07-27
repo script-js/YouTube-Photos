@@ -131,7 +131,7 @@ body,html {
   display: block;
 }
 
-button {
+button,input {
   background: #464545;
   border: none;
   padding: 5px;
@@ -139,8 +139,10 @@ button {
   padding-left: 10px;
   padding-right: 10px;
   transition: ease 150ms;
-  cursor: pointer;
+  border: 2px solid black;
 }
+
+button {cursor: pointer;}
 
 button:hover {
   background: #767575;
