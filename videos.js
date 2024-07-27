@@ -30,7 +30,8 @@ function updateVid(id,desc,title) {
           "title": title
         },
         "status": {
-          "privacyStatus": "private"
+          "privacyStatus": "private",
+          "selfDeclaredMadeForKids": false
         }
       }
     })
