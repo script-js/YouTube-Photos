@@ -38,6 +38,35 @@ function getPlaylist() {
   });
 }
 
+function getAlbum(handoff) {
+   gapi.client.request({
+    path: '/youtube/v3/playlists',
+    params: {
+      part: 'snippet',
+      mine: true
+    },
+    callback: function(response) {
+      if (response.error) {
+        console.log(response.error.message);
+      } else {
+        if (response.kind == "youtube#playlistListResponse") {
+           var ct = 0
+           var albums = []
+             response.items.forEach(function(k,index,array) {
+               if (k.snippet.title.includes("YouTubePhotosAlbum:")) {
+                 console.log(k)
+                 albums.push({"id":k.id,"thumbnail":k.snippet.thumbnails.default.url,"title":k.snippet.title})
+               }
+                if (index == (array.length - 1)) {
+                   handoff(albums)
+                }
+             })
+      }
+      }
+    }.bind(this)
+  });
+}
+
 // Replace 'YOUR_API_KEY' and 'YOUR_CHANNEL_ID' with your actual API key and channel ID
 function createPlaylist() {
     return gapi.client.youtube.playlists.insert({
