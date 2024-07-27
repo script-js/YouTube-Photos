@@ -9,8 +9,22 @@ function share(id,addon) {
         "status": {
           "privacyStatus": "unlisted"
         }
-    }).then(function() {console.log(shared)}).catch(err) {console.error(err)}
+    }).then(function() {console.log("shared")}).catch(err) {console.error(err)}
     return "https://www.youtube.com/embed/" + id + addon
+}
+
+function shareDisable(id) {
+  gapi.client.youtube.videos.update({
+      "part": [
+        "snippet,status,localizations"
+      ],
+      "resource": {
+        "id": id,
+        },
+        "status": {
+          "privacyStatus": "private"
+        }
+    }).then(function() {console.log("shared")}).catch(err) {console.error(err)}
 }
 
 function getShares() {
