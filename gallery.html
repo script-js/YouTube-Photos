@@ -127,7 +127,14 @@ function positionMenu(e) {
 
   function updateMenu(id) {
     menu_share.onclick = function() {
-      window.top.showShare(share(id))
+        getVideo(id,function(response) {
+               if (JSON.parse(response.description).type.includes("image")) {
+                  var addon = "?control=0&rel=0"
+                } else if (JSON.parse(response.description).type.includes("video")) {
+                  var addon = "?color=white&autoplay=1&rel=0"
+                }
+          window.top.showShare(share(id,addon))
+      })
     }
     menu_download.onclick = function() {
       downloadVid(id)
