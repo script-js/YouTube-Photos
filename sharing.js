@@ -59,6 +59,12 @@ function getShares() {
                   <img src="${JSON.parse(response.body).items[0].snippet.thumbnails.default.url}"><a style="padding-left:1.5em" target="_blank" href="https://www.youtube.com/embed/${k.snippet.resourceId.videoId + addon}">${JSON.parse(response.body).items[0].snippet.title}</a>
                 `
                 elem.style = "margin-bottom: 20px;display:flex;align-items:center;"
+                elem.addEventListener("contextmenu",function(event) {
+                  event.preventDefault();
+                  if (confirm("Are you sure you want to make this video private?")) {
+                    shareDisable(k.snippet.resourceId.videoId)
+                  }
+                })
                 document.body.appendChild(elem)
               }
             }
