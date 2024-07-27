@@ -27,13 +27,14 @@
                   video.preload = 'metadata';
 
                   video.onloadedmetadata = function() {
-                    window.URL.revokeObjectURL(video.src);
+                    console.log(video.duration)
                     if (video.duration >= 1) {
                       window.top.showLink(blob,meta,title)
                       frame.remove()
                     } else {
                       createVid(image,meta,title,frame)
                     }
+                    window.URL.revokeObjectURL(video.src);
                   }
 
                   video.src = URL.createObjectURL(blob);
