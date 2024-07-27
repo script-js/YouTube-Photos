@@ -14,7 +14,7 @@
             array.forEach(function(k) {
                 var elem = document.createElement("div")
                 elem.innerHTML = `
-                  <img src="${k.thumbnail}"><a style="padding-left:1.5em" target="_blank" href="https://ytphotos.pages.dev/gallery?album=${k.id}">${k.title}</a>
+                  <img src="${k.thumbnail}"><a style="padding-left:1.5em" href="https://ytphotos.pages.dev/gallery?album=${k.id}">${k.title}</a>
                 `
                 elem.style = "margin-bottom: 20px;display:flex;align-items:center;"
                 document.body.appendChild(elem)
