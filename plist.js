@@ -50,7 +50,6 @@ function getAlbums(handoff) {
         console.log(response.error.message);
       } else {
         if (response.kind == "youtube#playlistListResponse") {
-           var ct = 0
            var albums = []
              response.items.forEach(function(k,index,array) {
                if (k.snippet.title.includes("YouTubePhotosAlbum:")) {
@@ -88,13 +87,14 @@ function createPlaylist() {
       }
     })
         .then(function(response) {
-                // Handle the results here (response.result has the parsed body).
+           // Handle the results here (response.result has the parsed body).
                 playlist = JSON.parse(response.body).id
+                
               },
               function(err) { console.error("Execute error", err); });
 }
 
-function createAlbum(name) {
+function createAlbum(name,id) {
     return gapi.client.youtube.playlists.insert({
       "part": [
         "snippet,status"
@@ -113,8 +113,13 @@ function createAlbum(name) {
       }
     })
         .then(function(response) {
-                // Handle the results here (response.result has the parsed body).
-                playlist = JSON.parse(response.body).id
+                
+           if (id) {
+                addVideoToAlbum(id,JSON.parse(response.body).id)
+                toggleMenuOff()
+           } else {
+              location.reload()
+           }
               },
               function(err) { console.error("Execute error", err); });
 }
