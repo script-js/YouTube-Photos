@@ -134,6 +134,7 @@ const defaultMenu = menu.innerHTML
     }
     menu_album.onclick = function() {
       albumList(id)
+      menu.style.display = "block"
     }
     getVideo(id,function(response) {
                if (JSON.parse(response.description).type.includes("image")) {
