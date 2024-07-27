@@ -46,8 +46,14 @@
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
     <script src="//apis.google.com/js/client:plusone.js"></script>
       <script>
+        var albumId = new URLSearchParams(window.location.search).get("album")
         function startup() {
-          getPlaylist()
+          if (albumId) {
+            playlist = albumId
+            getItems()
+          } else {
+            getPlaylist()
+          }
         }
       </script>
       <script src="googleauth.js"></script>
@@ -162,6 +168,7 @@ const defaultMenu = menu.innerHTML
         elem.classList = "menu-item"
         elem.onclick = function() {
           addVideoToAlbum(id,k.id)
+          toggleMenuOff()
         }
         elem.innerHTML = `<img src="${k.thumbnail}" width="32px" height="32px">${k.title}`
         menu.appendChild(elem)
