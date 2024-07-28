@@ -71,6 +71,7 @@ function showLink(obj,meta,title) {
   uploadUL.appendChild(link)
   if (currentFile == file.files.length) {
     uploadProg(true)
+    duringUpload.style.display = "none";
     modal.style.display = "block";
     uploadUL.style.display = "block"
     uploadText.innerHTML = "<b>Done</b><h3>Click the filenames to download, then upload them to <a href='https://studio.youtube.com/' target='_blank'>YouTube Studio</h3>"
