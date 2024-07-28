@@ -91,7 +91,7 @@ var videoList;
 function getVideoList() {
   gapi.client.youtube.search.list({
       "part": [
-        "snippet,contentDetails"
+        "snippet"
       ],
       "forMine" : true,
       "publishedAfter": uploadStart
