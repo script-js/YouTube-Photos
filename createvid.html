@@ -20,6 +20,7 @@
             };
 
             recorder.onstop = function () {
+              console.log(chunks[0].size)
               if (chunks[0].size > 217) {
                 var blob = new Blob(chunks,
                                       { type: 'video/webm' })
@@ -27,7 +28,6 @@
                   video.preload = 'metadata';
 
                   video.onloadedmetadata = function() {
-                    console.log(video.duration)
                     if (video.duration >= 1 && video.duration != Infinity) {
                       window.top.showLink(blob,meta,title)
                       frame.remove()
