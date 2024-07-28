@@ -200,6 +200,9 @@ function getItems() {
                         openViewer(videos[k],JSON.parse(data.description))
                       }
                       newimg.src = thumb
+                      if (localStorage.getItem("thumbSize")) {
+                         newimg.width = localStorage.getItem("thumbSize")
+                      }
                       newimg.addEventListener("contextmenu", function (event) {
                         event.preventDefault();
                         toggleMenuOn();
@@ -236,7 +239,7 @@ function getItems() {
                             dateDiv.appendChild(k)
                             if (index == (array.length - 1)) {document.body.appendChild(dateDiv)}
                          })
-                           })
+                     })
                    }
                 },1)
               }
