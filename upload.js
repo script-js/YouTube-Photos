@@ -1,5 +1,4 @@
         const imageInput = document.getElementById('file');
-        var filesLength = 0;
         var imageDone = true
         var currentFile = -1
 
@@ -7,6 +6,7 @@
                                     function () {
                                             uploadUL.style.display = "none"
                                             uploadUL.innerHTML = '<a href="javascript:downloadAll()">Download All</a>'
+                                            
             const files = this.files;
             uploadProg()
             Object.keys(files).forEach(function(k) {
@@ -67,7 +67,7 @@ function showLink(obj,meta,title) {
   newbtn.innerHTML = "Add to library"
   link.appendChild(newbtn)
   uploadUL.appendChild(link)
-  if (filesLength == file.files.length) {
+  if (currentFile == file.files.length) {
     uploadProg(true)
     modal.style.display = "block";
     uploadUL.style.display = "block"
