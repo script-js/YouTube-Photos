@@ -105,7 +105,7 @@ function updateMetadata(items) {
 }
 
 function downloadAll() {
-  uploadUL.querySelector("a").forEach(function(k) {
+  uploadUL.querySelectorAll("a").forEach(function(k) {
     k.click()
   })
 }
