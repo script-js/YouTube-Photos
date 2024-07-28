@@ -1,12 +1,13 @@
         const imageInput = document.getElementById('file');
         var imageDone = true
         var currentFile = 0
+        var uploadStart;
 
         imageInput.addEventListener('change',
                                     function () {
                                             uploadUL.style.display = "none"
                                             uploadUL.innerHTML = '<a href="javascript:downloadAll()">Download All</a>'
-                                            
+                                            uploadStart = new Date(Date.now()).toISOString()
             const files = this.files;
             document.getElementById("upload-progress").max = files.length
             totalc.innerHTML = files.length
@@ -87,12 +88,13 @@ function showLink(obj,meta,title) {
 }
 
 var videoList;
-function getVideoList(max) {
-  gapi.client.youtube.videos.list({
+function getVideoList() {
+  gapi.client.youtube.search.list({
       "part": [
         "snippet,contentDetails"
       ],
-      "maxResults": max
+      "forMine" : true,
+      "publishedAfter": uploadStart
     }).then(function(response) {
       updateMetadata(response.items)
     }).catch((err) => console.error(err))
