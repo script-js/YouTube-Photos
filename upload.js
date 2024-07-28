@@ -1,6 +1,6 @@
         const imageInput = document.getElementById('file');
         var imageDone = true
-        var currentFile = -1
+        var currentFile = 0
 
         imageInput.addEventListener('change',
                                     function () {
