@@ -20,13 +20,12 @@
             };
 
             recorder.onstop = function () {
-              console.log(chunks[0].size)
               if (chunks[0].size > 217) {
                 var blob = new Blob(chunks,
                                       { type: 'video/webm' })
                   var video = document.createElement('video');
                   video.preload = 'metadata';
-
+                  
                   video.onloadedmetadata = function() {
                     if (video.duration >= 1 && video.duration != Infinity) {
                       window.top.showLink(blob,meta,title)
@@ -34,10 +33,13 @@
                     } else {
                       createVid(image,meta,title,frame)
                     }
-                    window.URL.revokeObjectURL(video.src);
+                    clearTimeout(abort)
                   }
 
                   video.src = URL.createObjectURL(blob);
+                  var abort = setTimeout(function() {
+                    createVid(image,meta,title,frame)    
+                  },5000)
               } else {
                 createVid(image,meta,title,frame)
               }
