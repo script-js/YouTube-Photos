@@ -1,6 +1,7 @@
         const imageInput = document.getElementById('file');
         var filesLength = 0;
         var imageDone = true
+        var currentFile = -1
 
         imageInput.addEventListener('change',
                                     function () {
@@ -55,11 +56,11 @@ function uploadProg(off) {
 }
 
 function showLink(obj,meta,title) {
-  filesLength -= 1;
+  currentFile += 1;
   var url = URL.createObjectURL(obj)
   var link = document.createElement("li")
   link.innerHTML = `
-    <p><a href="${url}" download="YTPHOTOSUPLOAD/${title}">${title}</a></p>
+    <p><a href="${url}" download="YTPHOTOSUPLOAD/${currentFile}">${title}</a></p>
     <input style="margin-right:20px" placeholder="Video ID">
   `
   var newbtn = document.createElement("button")
@@ -71,7 +72,7 @@ function showLink(obj,meta,title) {
   newbtn.innerHTML = "Add to library"
   link.appendChild(newbtn)
   uploadUL.appendChild(link)
-  if (filesLength == 0) {
+  if (filesLength == file.files.length) {
     uploadProg(true)
     modal.style.display = "block";
     uploadUL.style.display = "block"
