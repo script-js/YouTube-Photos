@@ -61,11 +61,8 @@ function showLink(obj,meta,title) {
   link.innerHTML = `
     <p><a href="${url}" download="YTPHOTOSUPLOAD${currentFile}">${title}</a></p>
   `
-  var newbtn = document.createElement("button")
   link.setAttribute("data-meta",JSON.stringify(meta))
   link.setAttribute("data-title",title)
-  newbtn.innerHTML = "Add to library"
-  link.appendChild(newbtn)
   uploadUL.appendChild(link)
   if (currentFile == file.files.length) {
     uploadProg(true)
