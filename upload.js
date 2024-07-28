@@ -60,7 +60,7 @@ function showLink(obj,meta,title) {
   var url = URL.createObjectURL(obj)
   var link = document.createElement("li")
   link.innerHTML = `
-    <p><a href="${url}" download="YTPHOTOSUPLOAD/${currentFile}">${title}</a></p>
+    <p><a href="${url}" download="YTPHOTOSUPLOAD${currentFile}">${title}</a></p>
   `
   var newbtn = document.createElement("button")
   link.setAttribute("data-meta",JSON.stringify(meta))
