@@ -8,7 +8,6 @@
                                             uploadUL.style.display = "none"
                                             uploadUL.innerHTML = '<a href="javascript:downloadAll()">Download All</a>'
             const files = this.files;
-            filesLength = files.length;
             uploadProg()
             Object.keys(files).forEach(function(k) {
                 const file = files[k];
