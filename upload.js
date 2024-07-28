@@ -70,17 +70,19 @@ function showLink(obj,meta,title) {
   link.setAttribute("data-title",title)
   uploadUL.appendChild(link)
   if (currentFile == file.files.length) {
+  getChannel(function(channel) {
     uploadProg(true)
     duringUpload.style.display = "none";
     modal.style.display = "block";
     uploadUL.style.display = "block"
-    uploadText.innerHTML = "<b>Done</b><h3>Click the filenames to download, then upload them to <a href='https://studio.youtube.com/' target='_blank'>YouTube Studio</h3>"
+    uploadText.innerHTML = "<b>Done</b><h3>Click the filenames to download, then upload them to <a href='https://studio.youtube.com/channel/" + channel.id + "/videos/upload?d=ud' target='_blank'>YouTube Studio</h3>"
     var btn1 = document.createElement("button")
     btn1.innerHTML = "Update Metadata"
     btn1.onclick = function() {
       getVideoList()
     }
     uploadUL.appendChild(btn1)
+  })
   }
 }
 
