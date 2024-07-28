@@ -8,6 +8,9 @@
                                             uploadUL.innerHTML = '<a href="javascript:downloadAll()">Download All</a>'
                                             
             const files = this.files;
+            document.getElementById("upload-progress").max = files.length
+            totalc.innerHTML = files.length
+            duringUpload.style.display = "block"
             uploadProg()
             Object.keys(files).forEach(function(k) {
                 const file = files[k];
@@ -56,6 +59,8 @@ function uploadProg(off) {
 
 function showLink(obj,meta,title) {
   currentFile += 1;
+  document.getElementById("upload-progress").value = currentFile
+  donec.innerHTML = currentFile
   var url = URL.createObjectURL(obj)
   var link = document.createElement("li")
   link.innerHTML = `
