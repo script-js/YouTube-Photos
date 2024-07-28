@@ -96,6 +96,7 @@ function getVideoList() {
       "forMine" : true,
       "publishedAfter": uploadStart
     }).then(function(response) {
+          console.log(response)
       updateMetadata(response.items)
     }).catch((err) => console.error(err))
 }
