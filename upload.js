@@ -86,7 +86,7 @@ function showLink(obj,meta,title) {
 
 var videoList;
 function getVideoList(max) {
-  gapi.client.youtube.playlistItems.list({
+  gapi.client.youtube.videos.list({
       "part": [
         "snippet,contentDetails"
       ],
