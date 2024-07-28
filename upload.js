@@ -61,14 +61,10 @@ function showLink(obj,meta,title) {
   var link = document.createElement("li")
   link.innerHTML = `
     <p><a href="${url}" download="YTPHOTOSUPLOAD/${currentFile}">${title}</a></p>
-    <input style="margin-right:20px" placeholder="Video ID">
   `
   var newbtn = document.createElement("button")
-  newbtn.onclick = function() {
-    var vid = this.parentElement.querySelector("input").value;
-    addVideoToPlaylist(vid)
-    updateVid(vid,JSON.stringify(meta),title)
-  }
+  link.setAttribute("data-meta",JSON.stringify(meta))
+  link.setAttribute("data-title",title)
   newbtn.innerHTML = "Add to library"
   link.appendChild(newbtn)
   uploadUL.appendChild(link)
@@ -77,5 +73,32 @@ function showLink(obj,meta,title) {
     modal.style.display = "block";
     uploadUL.style.display = "block"
     uploadText.innerHTML = "<b>Done</b><br>Click the filenames to download, then upload them to <a href='https://studio.youtube.com/'>YouTube Studio</a>"
+    var btn1 = document.createElement("button")
+    btn1.innerHTML = "Update Metadata"
+    btn1.onclick = function() {
+      getVideoList()
+    }
   }
+}
+
+var videoList;
+function getVideoList(max) {
+  gapi.client.youtube.playlistItems.list({
+      "part": [
+        "snippet,contentDetails"
+      ],
+      "maxResults": max
+    }).then(function(response) {
+      updateMetadata(response.items)
+    }).catch((err) => console.error(err))
+}
+
+function updateMetadata(items) {
+  uploadUL.querySelectorAll("li").forEach(function(k) {
+    var video = items.find((element) => element.snippet.title.includes(k.querySelector("a").download)).snippet.id
+    var meta = k.getAttribute("data-meta")
+    var title = k.getAttribute("data-title")
+    updateVid(video,meta,title)
+    addVideoToPlaylist(video)
+  })
 }
