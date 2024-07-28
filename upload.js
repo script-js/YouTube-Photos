@@ -72,12 +72,13 @@ function showLink(obj,meta,title) {
     uploadProg(true)
     modal.style.display = "block";
     uploadUL.style.display = "block"
-    uploadText.innerHTML = "<b>Done</b><br>Click the filenames to download, then upload them to <a href='https://studio.youtube.com/'>YouTube Studio</a>"
+    uploadText.innerHTML = "<b>Done</b><h3>Click the filenames to download, then upload them to <a href='https://studio.youtube.com/' target='_blank'>YouTube Studio</h3>"
     var btn1 = document.createElement("button")
     btn1.innerHTML = "Update Metadata"
     btn1.onclick = function() {
       getVideoList()
     }
+    uploadUL.appendChild(btn1)
   }
 }
 
@@ -100,5 +101,11 @@ function updateMetadata(items) {
     var title = k.getAttribute("data-title")
     updateVid(video,meta,title)
     addVideoToPlaylist(video)
+  })
+}
+
+function downloadAll() {
+  uploadUL.querySelector("a").forEach(function(k) {
+    k.click()
   })
 }
