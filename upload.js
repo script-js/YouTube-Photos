@@ -6,7 +6,7 @@
         imageInput.addEventListener('change',
                                     function () {
                                             uploadUL.style.display = "none"
-                                            uploadUL.innerHTML = ""
+                                            uploadUL.innerHTML = '<a href="javascript:downloadAll()">Download All</a>'
             const files = this.files;
             filesLength = files.length;
             uploadProg()
