@@ -95,15 +95,7 @@ function getVideoList(max) {
       "forMine" : true,
       "maxResults": max
     }).then(function(response) {
-          var items = []
-          JSON.parse(response.body).items.forEach(function(k,index,array) {
-            getVideo(k.id.videoId,function(data) {
-              items[index] = data
-            })
-            if (index == (array.length - 1)) {
-                    updateMetadata(items)
-            }
-          })
+      updateMetadata(JSON.parse(response.body).items)
     }).catch((err) => console.error(err))
 }
 
