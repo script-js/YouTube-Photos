@@ -7,7 +7,6 @@
                                     function () {
                                             uploadUL.style.display = "none"
                                             uploadUL.innerHTML = '<a href="javascript:downloadAll()">Download All</a>'
-                                            uploadStart = new Date(Date.now()).toISOString()
             const files = this.files;
             document.getElementById("upload-progress").max = files.length
             totalc.innerHTML = files.length
@@ -94,10 +93,17 @@ function getVideoList(max) {
         "id"
       ],
       "forMine" : true,
-      "maxResults": max,
-      "publishedAfter": uploadStart
+      "maxResults": max
     }).then(function(response) {
-          console.log(response)
+          var items = []
+          JSON.parse(response.body).items.forEach(function(k,index,array) {
+            getVideo(k.id.videoId,function(data) {
+              items[index] = data
+            })
+            if (index == (array.length - 1)) {
+                    updateMetadata(items)
+            }
+          })
     }).catch((err) => console.error(err))
 }
 
