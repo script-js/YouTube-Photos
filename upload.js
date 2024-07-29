@@ -80,7 +80,7 @@ function showLink(obj,meta,title) {
     var btn1 = document.createElement("button")
     btn1.innerHTML = "Update Metadata"
     btn1.onclick = function() {
-      getVideoList()
+      getVideoList(file.files.length)
     }
     uploadUL.appendChild(btn1)
   })
@@ -88,16 +88,16 @@ function showLink(obj,meta,title) {
 }
 
 var videoList;
-function getVideoList() {
+function getVideoList(max) {
   gapi.client.youtube.search.list({
       "part": [
-        "snippet"
+        "id"
       ],
       "forMine" : true,
+      "maxResults": max,
       "publishedAfter": uploadStart
     }).then(function(response) {
           console.log(response)
-      updateMetadata(response.items)
     }).catch((err) => console.error(err))
 }
 
