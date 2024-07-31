@@ -20,8 +20,8 @@
 
                 var gcdResult = gcd(width, height);
 
-                canvas.width = 1000
-                canvas.style.aspectRatio = `${width / gcdResult} / ${height / gcdResult}`;
+                canvas.width = (width / gcdResult) * 100
+                canvas.height = (height / gcdResult) * 100
           }
 
             const frameRate = 10; // Frames per second
