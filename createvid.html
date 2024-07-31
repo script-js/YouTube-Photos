@@ -20,9 +20,9 @@
 
                 var gcdResult = gcd(width, height);
 
-                canvas.width = (width / gcdResult) * 100
-                canvas.height = (height / gcdResult) * 100
-                console.log(canvas.width,canvas.height)
+                canvas.width = (width / gcdResult).replaceAll("0","") * 100
+                canvas.height = (height / gcdResult).replaceAll("0","") * 100
+                
           }
 
             const frameRate = 10; // Frames per second
