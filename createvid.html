@@ -40,14 +40,9 @@
                     } else {
                       createVid(image,meta,title,frame)
                     }
-                    clearTimeout(abort)
                   }
 
                   video.src = URL.createObjectURL(blob);
-                  var abort = setTimeout(function() {
-                    console.log(image,blob)
-                    createVid(image,meta,title,frame)    
-                  },5000)
               } else {
                 createVid(image,meta,title,frame)
               }
