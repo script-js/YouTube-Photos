@@ -1,9 +1,9 @@
 <!DOCTYPE HTML>
 <html>
   <head>
-     <body></body>
+     <body><canvas id="canvas1"></canvas></body>
     <script>
-      var canvas = document.createElement("canvas")
+      var canvas = document.getElementById("canvas1")
       var ctx = canvas.getContext("2d")
         function createVid(image,meta,title,frame) {
           var imgArea = meta.width * meta.height
@@ -26,7 +26,7 @@
               chunks.push(e.data);
             };
 
-            recorder.onstop = function () {
+            recorder.onstop = function() {
               console.log(chunks[0].size)
               if (chunks[0].size > 217) {
                 var blob = new Blob(chunks,
@@ -45,7 +45,7 @@
 
                   video.src = URL.createObjectURL(blob);
               } else {
-                createVid(image,meta,title,frame)
+               setTimeout(function() {createVid(image,meta,title,frame)},100)
               }
             };
             ctx.drawImage(image, 0, 0, canvas.width, canvas.height);
