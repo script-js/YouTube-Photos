@@ -27,6 +27,7 @@
             };
 
             recorder.onstop = function () {
+              console.log(chunks[0].size)
               if (chunks[0].size > 217) {
                 var blob = new Blob(chunks,
                                       { type: 'video/webm' })
@@ -48,7 +49,6 @@
               }
             };
             ctx.drawImage(image, 0, 0, canvas.width, canvas.height);
-            console.log("check")
             recorder.start();
             setTimeout(function() {
               recorder.stop()
