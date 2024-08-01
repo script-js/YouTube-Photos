@@ -235,7 +235,6 @@ function getItems() {
                          var dateDiv = document.createElement("div")
                          dateDiv.innerHTML = "<h3>" + dateString + "</h3>"
                          k.values.forEach(function(k,index,array) {
-                            console.log(k)
                             dateDiv.appendChild(k)
                             if (index == (array.length - 1)) {document.body.appendChild(dateDiv)}
                          })
