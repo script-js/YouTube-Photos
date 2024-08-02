@@ -19,7 +19,7 @@
             const frameRate = 10; // Frames per second
             const recorder = new MediaRecorder(canvas.
               captureStream(frameRate),
-              { mimeType: 'video/webm' });
+              { mimeType: 'video/mp4' });
             const chunks = [];
 
             recorder.ondataavailable = function (e) {
@@ -30,7 +30,7 @@
               console.log(chunks[0].size)
               if (chunks[0].size > 217) {
                 var blob = new Blob(chunks,
-                                      { type: 'video/webm' })
+                                      { type: 'video/mp4' })
                   var video = document.createElement('video');
                   video.preload = 'metadata';
                  video.src = URL.createObjectURL(blob);
