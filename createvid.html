@@ -36,9 +36,16 @@
                  video.src = URL.createObjectURL(blob);
                   video.onloadedmetadata = function() {
                     console.log(video.src)
-                    if (video.duration >= 1 && video.duration != Infinity) {
+                    if (video.duration >= 1) {
                       window.top.showLink(blob,meta,title)
                       frame.remove()
+                      if (video.duration == Infinity) {
+                      video.currentTime = 1e101;
+                      video.addEventListener("timeupdate", () => {
+                        console.log("after workaround:", video.duration);
+                        video.currentTime = 0;
+                      }, { once: true });
+                      }
                     } else {
                       createVid(image,meta,title,frame)
                     }
