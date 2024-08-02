@@ -33,12 +33,15 @@
                                       { type: 'video/webm' })
                   var video = document.createElement('video');
                   video.preload = 'metadata';
-                  
+                  console.log("before")
                   video.onloadedmetadata = function() {
+                    console.log(video.duration)
                     if (video.duration >= 1 && video.duration != Infinity) {
+                      console.log("after")
                       window.top.showLink(blob,meta,title)
                       frame.remove()
                     } else {
+                      console.log("afterError")
                       createVid(image,meta,title,frame)
                     }
                   }
