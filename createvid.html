@@ -44,7 +44,7 @@
             },1000)
         }
 */
-      function createVid(image,meta,title) {
+      function createVid(image,meta,title,frame) {
         var imgArea = meta.width * meta.height
         if (imgArea < 37500000) {
             canvas.width = meta.width
@@ -69,6 +69,7 @@
             recorder.onstop = function () {
                 const blob = new Blob(chunks,
                                       { type: 'video/webm' });
+              console.log(URL.createObjectURL(blob))
                 window.top.showLink(blob,meta,title)
                       frame.remove()
             };
