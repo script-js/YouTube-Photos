@@ -5,6 +5,7 @@
     <script>
       var canvas = document.getElementById("canvas1")
       var ctx = canvas.getContext("2d")
+      /*
         function createVid(image,meta,title,frame) {
           var imgArea = meta.width * meta.height
           if (imgArea < 37500000) {
@@ -31,25 +32,7 @@
               if (chunks[0].size > 217) {
                 var blob = new Blob(chunks,
                                       { type: 'video/mp4' })
-                  var video = document.createElement('video');
-                  video.preload = 'metadata';
-                 video.src = URL.createObjectURL(blob);
-                  video.onloadedmetadata = function() {
-                    console.log(video.src)
-                    if (video.duration >= 1) {
-                      window.top.showLink(blob,meta,title)
-                      frame.remove()
-                      if (video.duration == Infinity) {
-                      video.currentTime = 1e101;
-                      video.addEventListener("timeupdate", () => {
-                        console.log("after workaround:", video.duration);
-                        video.currentTime = 0;
-                      }, { once: true });
-                      }
-                    } else {
-                      createVid(image,meta,title,frame)
-                    }
-                  }
+                 
               } else {
                setTimeout(function() {createVid(image,meta,title,frame)},100)
               }
@@ -60,8 +43,8 @@
               recorder.stop()
             },1000)
         }
-
-      function createVid2(image,meta,title) {
+*/
+      function createVid(image,meta,title) {
         var imgArea = meta.width * meta.height
         if (imgArea < 37500000) {
             canvas.width = meta.width
@@ -86,8 +69,8 @@
             recorder.onstop = function () {
                 const blob = new Blob(chunks,
                                       { type: 'video/webm' });
-                const url = URL.createObjectURL(blob);
-                console.log(url,meta,title)
+                window.top.showLink(blob,meta,title)
+                      frame.remove()
             };
 
             recorder.start();
