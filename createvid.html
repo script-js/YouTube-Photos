@@ -100,9 +100,7 @@
 
                 const fadeIn = () => {
                     ctx.clearRect(0, 0, canvas.width, canvas.height);
-                    ctx.globalAlpha = Math.min(1, 
-                                               (Date.now() - startTime)
-                                               / fadeInDuration);
+                    ctx.globalAlpha = 1
                     ctx.drawImage(image, 0, 0,
                                   canvas.width, canvas.height);
                     if (Date.now() - startTime < fadeInDuration) {
