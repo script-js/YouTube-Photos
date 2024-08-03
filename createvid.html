@@ -62,6 +62,7 @@
         }
 
       function createVid2(image,meta,title) {
+        var imgArea = meta.width * meta.height
         if (imgArea < 37500000) {
             canvas.width = meta.width
             canvas.height = meta.height
