@@ -42,16 +42,10 @@ function updateVid(id,desc,title) {
               function(err) { console.error("Execute error", err); });
   }
 
-function openViewer(id,metadata) {
+function openViewer(id,metadata,thumbs) {
     if (metadata.type.includes("image")) {
-        var addon = "?control=0&rel=0"
+      window.open(thumbs.maxres.url, "","width=" + metadata.width + ", height=" + metadata.height + ", location=0, toolbar=0, menubar=0")
     } else if (metadata.type.includes("video")) {
-        var addon = "?color=white&autoplay=1&rel=0"
-    }
-    console.log(metadata)
-    if (metadata.width && metadata.height) {
-      window.open("https://www.youtube.com/embed/" + id + addon, "","width=" + metadata.width + ", height=" + metadata.height + ", location=0, toolbar=0, menubar=0")
-    } else {
-      window.open("https://www.youtube.com/embed/" + id + addon, "","location=0, toolbar=0, menubar=0")
+      window.open("https://www.youtube.com/embed/" + id + "?color=white&autoplay=1&rel=0", "","location=0, toolbar=0, menubar=0")
     }
   }
