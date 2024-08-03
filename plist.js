@@ -197,7 +197,7 @@ function getItems() {
                       var thumb = data.thumbnails.default.url;
                       var newimg = document.createElement("img")
                       newimg.onclick = function() {
-                        openViewer(videos[k],JSON.parse(data.description))
+                        openViewer(videos[k],JSON.parse(data.description),data.thumbnails)
                       }
                       newimg.src = thumb
                       if (localStorage.getItem("thumbSize")) {
