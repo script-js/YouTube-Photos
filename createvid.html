@@ -115,10 +115,7 @@
                const fadeOut = () => {
                     ctx.clearRect(0, 0, canvas.width,
                                   canvas.height);
-                    ctx.globalAlpha = Math.max(0, 1 - 
-                                       (Date.now() - startTime -
-                                        fadeInDuration) / 
-                                        fadeOutDuration);
+                    ctx.globalAlpha = 1
                     ctx.drawImage(image, 0,
                                   0, canvas.width, canvas.height);
                     if (Date.now() - startTime < totalDuration) {
